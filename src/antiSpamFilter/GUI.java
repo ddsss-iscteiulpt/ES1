@@ -16,7 +16,7 @@ import javax.swing.WindowConstants;
 public class GUI {
 	
 	private JFrame frame;
-
+	private int i;
 	public GUI() {
 		super();
 		frame = new JFrame();
