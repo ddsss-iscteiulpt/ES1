@@ -47,6 +47,8 @@ public class Leitura {
 					
 					System.out.println(divisao.length);
 				}
+				
+				s.close();
 
 			} catch (FileNotFoundException e) {
 				System.out.println("Erro no Scanner");
