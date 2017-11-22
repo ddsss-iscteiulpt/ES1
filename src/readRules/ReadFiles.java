@@ -51,6 +51,18 @@ public class ReadFiles {
 
 	}
 
+	public HashMap<String, String> getRegras() {
+		return regras;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public FileReader getReader() {
+		return reader;
+	}
+
 
 
 }
