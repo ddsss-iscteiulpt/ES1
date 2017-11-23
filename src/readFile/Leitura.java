@@ -69,7 +69,6 @@ public class Leitura {
 
 
 				}
-				System.out.println("/////////////////////////////////////////////////////////////////////////////////////////////////////contador: " + c);
 
 			} catch (FileNotFoundException e) {
 				System.out.println("Erro no Scanner");
