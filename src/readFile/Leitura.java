@@ -82,6 +82,9 @@ public class Leitura {
 	private void lerColuna(String[] divisao, int file) throws IOException{
 
 
+		//Atenção vai dar erro (NullPointerException) existem 2 regras que nao estao 
+		//no rules mas aparecem no spam.log --> FM_IS_IT_OUR_ACCOUNT FROM_DOMAIN_NOVOWEL
+		
 			double pesoFinal = 0;
 			for(int i=1; i<divisao.length; i++){
 				String rule = divisao[i];

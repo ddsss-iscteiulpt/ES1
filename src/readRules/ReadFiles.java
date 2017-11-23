@@ -18,7 +18,7 @@ public class ReadFiles {
 
 
 	HashMap<String, String> regras = new HashMap<String, String>();
-	File file = new File("C:/Users/nuno/git/ES1-2017-METIA1-41(2)/src/antiSpamFilter/rules.cf"); //Path deve ser diferente
+	File file = new File("C:/Users/nuno/git/ES1-2017-METIA1-41(2)/src/ReadRules/rules.cf"); //Path deve ser diferente
 	//Ficheiros rules.cf fica na mesma package que as classes
 	
 	FileReader reader = null;
@@ -43,12 +43,24 @@ public class ReadFiles {
 			peso = (rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
 			line = sc.next();
 			regras.put(line, Double.toString(peso));
-			System.out.println(line + " " + peso);
+			//System.out.println(line + " " + peso);
 		}
 		
 		sc.close();
 		//System.out.println(regras);
 
+	}
+
+	public HashMap<String, String> getRegras() {
+		return regras;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public FileReader getReader() {
+		return reader;
 	}
 
 
