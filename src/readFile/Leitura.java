@@ -16,8 +16,15 @@ public class Leitura {
 	private File[] files;
 	private int c = 0;
 	private ReadFiles readFiles;
-	private int FP;
-	private int FN;
+	public static int FP;
+	public static int FN;
+	
+	public static int getFP(){
+		return FP;
+	}
+	public static int getFN(){
+		return FN;
+	}
 
 	public Leitura(ReadFiles readFiles) throws IOException {
 
@@ -32,7 +39,7 @@ public class Leitura {
 			@Override
 			public boolean accept(File f) {
 
-				// se retornar verdadeiro, f será incluido
+				// se retornar verdadeiro, f serï¿½ incluido
 
 				if (f.getName().endsWith("txt"))
 					return true;
@@ -81,7 +88,7 @@ public class Leitura {
 	private void lerColuna(String[] divisao, int file) throws IOException{
 
 
-		//Atenção vai dar erro (NullPointerException) existem 2 regras que nao estao 
+		//Atenï¿½ï¿½o vai dar erro (NullPointerException) existem 2 regras que nao estao 
 		//no rules mas aparecem no spam.log --> FM_IS_IT_OUR_ACCOUNT FROM_DOMAIN_NOVOWEL
 		
 			double pesoFinal = 0;

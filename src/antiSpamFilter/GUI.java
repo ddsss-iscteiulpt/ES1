@@ -3,6 +3,9 @@ package antiSpamFilter;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+
+import readFile.Leitura;
+import readFile.Main;
 
 public class GUI {
 	
@@ -69,9 +75,7 @@ public class GUI {
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2,1));
 		
-		JButton avQualidade = new JButton("Av. qualidade");
-		avQualidade.setPreferredSize(new Dimension(120,30));
-		buttonsPanel.add(avQualidade);
+		
 		
 		JButton guardar = new JButton("Guardar");
 		guardar.setPreferredSize(new Dimension(120,30));
@@ -97,6 +101,27 @@ public class GUI {
 		fpFn.add(fn);
 		
 		manualConfig.add(fpFn);
+		
+		
+		JButton avQualidade = new JButton("Av. qualidade");
+		avQualidade.setPreferredSize(new Dimension(120,30));
+		buttonsPanel.add(avQualidade);
+		
+		avQualidade.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+				try {
+					Main.main(null);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				fp.setText(Integer.toString(Leitura.FP));
+				fn.setText(Integer.toString(Leitura.FN));
+			}
+		});
+		
 		
 		frame.add(manualConfig, BorderLayout.CENTER);
 		
