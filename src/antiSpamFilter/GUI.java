@@ -107,6 +107,9 @@ public class GUI {
 		avQualidade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				Leitura.setFN(0);
+				Leitura.setFP(0);
+				
 				try {
 					Main.main(null);
 				} catch (IOException e1) {

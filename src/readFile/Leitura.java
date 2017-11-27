@@ -26,6 +26,13 @@ public class Leitura {
 		return FN;
 	}
 
+	public static void setFP(int FP) {
+	       Leitura.FP = FP;
+	    }
+	public static void setFN(int FN) {
+	       Leitura.FN = FN;
+	    }
+	
 	public Leitura(ReadFiles readFiles) throws IOException {
 
 		this.readFiles = readFiles;
