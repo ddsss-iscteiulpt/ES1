@@ -3,6 +3,7 @@ package readRules;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class ReadFiles {
 
 
 	HashMap<String, String> regras = new HashMap<String, String>();
-	File file = new File("C:/Users/nuno/git/ES1-2017-METIA1-41(2)/src/ReadRules/rules.cf"); //Path deve ser diferente
+	File[] file; /* = new File("C:/Users/nuno/git/ES1-2017-METIA1-41(2)/src/ReadRules/rules.cf");*/ //Path deve ser diferente
 	//Ficheiros rules.cf fica na mesma package que as classes
 	
 	FileReader reader = null;
@@ -28,6 +29,21 @@ public class ReadFiles {
 
 	@SuppressWarnings("resource")
 	public void read() throws IOException{
+		
+		file = new File("Read").listFiles(new FileFilter() {
+
+			@Override
+			public boolean accept(File f) {
+
+				// se retornar verdadeiro, f ser� incluido
+
+				if (f.getName().endsWith("cf"))
+					return true;
+
+				return false;
+			}
+		});
+	
 
 		Random rand = new Random(); 
 		int i = 0;
@@ -35,7 +51,7 @@ public class ReadFiles {
 		double rangeMax = 5;
 		double peso = 0.0;
 		String line = null;
-		Scanner sc = new Scanner(file);
+		Scanner sc = new Scanner(file[0]);
 		
 //Leitura linha a linha do ficheiro e guardar no HashMap
 		while (sc.hasNextLine()) {
@@ -55,7 +71,9 @@ public class ReadFiles {
 		return regras;
 	}
 
-	public File getFile() {
+	
+
+	public File[] getFile() {
 		return file;
 	}
 
