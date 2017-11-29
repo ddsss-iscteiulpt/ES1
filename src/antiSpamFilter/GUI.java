@@ -2,28 +2,48 @@ package antiSpamFilter;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-
+import readRules.ReadFiles;
 import readFile.Leitura;
-import readFile.Main;
 
 public class GUI {
 
 	private JFrame frame;
+	private JButton ok;
+	private JList<String> rulesList;
+	private JTextArea weightList;
+	private DefaultListModel<String> lista;
+	private JTextField rulesPath;
+	private DefaultListModel<String> listaAuto;
+	private JTextField spamPath;
+	private JTextField hamPath;
+	private JButton ok1;
+	private JButton ok2;
+	private JTextField fp;
+	private JTextField fn;
+	private JButton avQualidade;
+	public static final GUI INSTANCE = new GUI();
 
 	// Comment
+
+	public static GUI getInstance() {
+		return INSTANCE;
+	}
 
 	public GUI() {
 		super();
@@ -32,48 +52,86 @@ public class GUI {
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		buildGui();
 		frame.pack();
+		frame.setVisible(true);
 	}
 
-	private void buildGui() {
+	public void addPathPanel() {
 		JPanel selectFiles = new JPanel();
 
 		JPanel pathPanel = new JPanel();
 		pathPanel.setLayout(new GridLayout(3, 1));
 
-		for (int i = 0; i < 3; i++) {
-			JTextField insertPath = new JTextField();
-			insertPath.setPreferredSize(new Dimension(1000, 30));
-			pathPanel.add(insertPath);
-		}
+		rulesPath = new JTextField();
+		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
+		rulesPath.setPreferredSize(new Dimension(200, 30));
+		rulesPath.setText("C:/Users/Diogo/Desktop/Faculdade/4ºano/ES1/rules.cf"); // esta
+																					// linha
+																					// não
+																					// é
+																					// suposto
+																					// existir
+		pathPanel.add(rulesPath);
+
+		spamPath = new JTextField();
+		spamPath.setFont(new Font("Arial", Font.PLAIN, 16));
+		spamPath.setPreferredSize(new Dimension(200, 30));
+		pathPanel.add(spamPath);
+
+		hamPath = new JTextField();
+		hamPath.setFont(new Font("Arial", Font.PLAIN, 16));
+		hamPath.setPreferredSize(new Dimension(200, 30));
+		pathPanel.add(hamPath);
 
 		JPanel okPanel = new JPanel();
 		okPanel.setLayout(new GridLayout(3, 1));
 
-		for (int i = 0; i < 3; i++) {
-			JButton ok = new JButton("OK");
-			ok.setPreferredSize(new Dimension(280, 30));
-			okPanel.add(ok);
-		}
+		ok = new JButton("OK");
+		ok.setPreferredSize(new Dimension(200, 30));
+		okPanel.add(ok);
+
+		ok1 = new JButton("OK");
+		ok1.setPreferredSize(new Dimension(200, 30));
+		okPanel.add(ok1);
+
+		ok2 = new JButton("OK");
+		ok2.setPreferredSize(new Dimension(200, 30));
+		okPanel.add(ok2);
 
 		selectFiles.add(pathPanel);
 		selectFiles.add(okPanel);
 
 		frame.add(selectFiles, BorderLayout.NORTH);
 
+	}
+
+	public void addManualConfig() {
+		lista = new DefaultListModel<String>();
+
 		JPanel manualConfig = new JPanel();
 
 		JPanel rulesPanel = new JPanel();
+		rulesPanel.setLayout(new GridLayout(1, 2));
 
-		JList<String> rulesList = new JList<String>();
-		rulesList.setPreferredSize(new Dimension(500, 500));
+		rulesList = new JList<String>(lista);
+
+		weightList = new JTextArea();
+
 		rulesPanel.add(rulesList);
 
-		JTextArea weightList = new JTextArea();
-		weightList.setPreferredSize(new Dimension(500, 500));
+		JScrollPane scrollArea = new JScrollPane(rulesList);
+		rulesPanel.add(scrollArea);
+
 		rulesPanel.add(weightList);
+
+		JScrollPane scrollArea2 = new JScrollPane(weightList);
+		rulesPanel.add(scrollArea2);
 
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 1));
+
+		avQualidade = new JButton("Av. qualidade");
+		avQualidade.setPreferredSize(new Dimension(120, 30));
+		buttonsPanel.add(avQualidade);
 
 		JButton guardar = new JButton("Guardar");
 		guardar.setPreferredSize(new Dimension(120, 30));
@@ -87,54 +145,60 @@ public class GUI {
 		JLabel fpLabel = new JLabel("FP");
 		fpFn.add(fpLabel);
 
-		JTextField fp = new JTextField();
+		fp = new JTextField();
 		fp.setPreferredSize(new Dimension(50, 50));
 		fpFn.add(fp);
 
 		JLabel fnLabel = new JLabel("FN");
 		fpFn.add(fnLabel);
 
-		JTextField fn = new JTextField();
+		fn = new JTextField();
 		fn.setPreferredSize(new Dimension(50, 50));
 		fpFn.add(fn);
 
 		manualConfig.add(fpFn);
 
-		JButton avQualidade = new JButton("Av. qualidade");
-		avQualidade.setPreferredSize(new Dimension(120, 30));
-		buttonsPanel.add(avQualidade);
-
-		avQualidade.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				Leitura.setFN(0);
-				Leitura.setFP(0);
-				
-				try {
-					Main.main(null);
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-
-				fp.setText(Integer.toString(Leitura.FP));
-				fn.setText(Integer.toString(Leitura.FN));
-			}
-		});
-
 		frame.add(manualConfig, BorderLayout.CENTER);
+
+	}
+
+	public JButton getAvQualidade() {
+		return avQualidade;
+	}
+
+	public JTextField getFp() {
+		return fp;
+	}
+
+	public JTextField getFn() {
+		return fn;
+	}
+
+	public JTextField getRulesPath() {
+		return rulesPath;
+	}
+
+	public void addAutoConfig() {
+		listaAuto = new DefaultListModel<String>();
 
 		JPanel autoConfig = new JPanel();
 
 		JPanel rulesPanelAuto = new JPanel();
+		rulesPanelAuto.setLayout(new GridLayout(1, 2));
 
-		JList<String> rulesListAuto = new JList<String>();
-		rulesListAuto.setPreferredSize(new Dimension(500, 500));
-		rulesPanelAuto.add(rulesListAuto);
+		JList<String> rulesListAuto = new JList<String>(listaAuto);
 
 		JTextArea weightListAuto = new JTextArea();
-		weightListAuto.setPreferredSize(new Dimension(500, 500));
+
+		rulesPanelAuto.add(rulesListAuto);
+
+		JScrollPane scrollArea = new JScrollPane(rulesListAuto);
+		rulesPanelAuto.add(scrollArea);
+
 		rulesPanelAuto.add(weightListAuto);
+
+		JScrollPane scrollArea2 = new JScrollPane(weightListAuto);
+		rulesPanelAuto.add(scrollArea2);
 
 		JPanel buttonsPanelAuto = new JPanel();
 		buttonsPanelAuto.setLayout(new GridLayout(2, 1));
@@ -172,8 +236,28 @@ public class GUI {
 
 	}
 
-	public void open() {
-		frame.setVisible(true);
+	public void buildGui() {
+
+		addPathPanel();
+		addManualConfig();
+		addAutoConfig();
+
+	}
+
+	public DefaultListModel<String> getLista() {
+		return lista;
+	}
+
+	public JButton getOk() {
+		return ok;
+	}
+
+	public JList<String> getRulesList() {
+		return rulesList;
+	}
+
+	public JTextArea getWeightList() {
+		return weightList;
 	}
 
 }

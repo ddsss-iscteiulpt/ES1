@@ -16,21 +16,21 @@ public class Leitura {
 	private File[] files;
 	private int c = 0;
 	private ReadFiles readFiles;
-	public static int FP;
-	public static int FN;
+	public int FP;
+	public int FN;
 	
-	public static int getFP(){
+	public  int getFP(){
 		return FP;
 	}
-	public static int getFN(){
+	public int getFN(){
 		return FN;
 	}
 
-	public static void setFP(int FP) {
-	       Leitura.FP = FP;
+	public void setFP(int FP) {
+	      this.FP = FP;
 	    }
-	public static void setFN(int FN) {
-	       Leitura.FN = FN;
+	public  void setFN(int FN) {
+	       this.FN = FN;
 	    }
 	
 	public Leitura(ReadFiles readFiles) throws IOException {
@@ -120,4 +120,15 @@ public class Leitura {
 
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

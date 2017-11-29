@@ -25,8 +25,6 @@ public class AntiSpamFilterAutomaticConfiguration {
   private static final int INDEPENDENT_RUNS = 5 ;
 
   public static void main(String[] args) throws IOException {
-	GUI g = new GUI();
-	g.open();
 	
     String experimentBaseDirectory = "experimentBaseDirectory";
 
