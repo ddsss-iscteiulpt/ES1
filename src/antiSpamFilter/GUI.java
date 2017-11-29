@@ -4,10 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,8 +14,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import readRules.ReadFiles;
-import readFile.Leitura;
 
 public class GUI {
 
@@ -63,23 +57,23 @@ public class GUI {
 
 		rulesPath = new JTextField();
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
-		rulesPath.setPreferredSize(new Dimension(200, 30));
-		rulesPath.setText("C:/Users/Diogo/Desktop/Faculdade/4�ano/ES1/rules.cf"); // esta
+		rulesPath.setPreferredSize(new Dimension(500, 30));
+		rulesPath.setText("/Users/mariana/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
 																					// linha
-																					// n�o
-																					// �
+																					// n�o
+																					// �
 																					// suposto
 																					// existir
 		pathPanel.add(rulesPath);
 
 		spamPath = new JTextField();
 		spamPath.setFont(new Font("Arial", Font.PLAIN, 16));
-		spamPath.setPreferredSize(new Dimension(200, 30));
+		spamPath.setPreferredSize(new Dimension(500, 30));
 		pathPanel.add(spamPath);
 
 		hamPath = new JTextField();
 		hamPath.setFont(new Font("Arial", Font.PLAIN, 16));
-		hamPath.setPreferredSize(new Dimension(200, 30));
+		hamPath.setPreferredSize(new Dimension(500, 30));
 		pathPanel.add(hamPath);
 
 		JPanel okPanel = new JPanel();
@@ -111,11 +105,39 @@ public class GUI {
 
 		JPanel rulesPanel = new JPanel();
 		rulesPanel.setLayout(new GridLayout(1, 2));
+		rulesPanel.setSize(300, 300);
 
 		rulesList = new JList<String>(lista);
 
 		weightList = new JTextArea();
-
+		
+		
+		
+		/**
+		 * FOI AQUI QUE ALTEREI!
+		 * 
+		 * NOTA: Desta forma as regras e os pesos ficam com uma scroll sincronizada
+		 * Há um problema que talvez seja devido ao tamanho do GUI ou da forma como os elementos estão dispostos
+		 * Aquilo que acontece é que não aparecem 20 linhas finais do ficheiro de regras...Mas de resto funciona 100%
+		 * 
+		 * Para voltarem ao código anterior basta "descomentar" o código que está comentado por baixo deste
+		 */
+		
+		
+		JScrollPane scrollArea1 = new JScrollPane(rulesList, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		JScrollPane scrollArea2 = new JScrollPane(weightList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		
+		scrollArea2.getVerticalScrollBar().setModel(scrollArea1.getVerticalScrollBar().getModel());
+		
+		
+		
+		
+		rulesPanel.add(scrollArea1);
+		rulesPanel.add(scrollArea2);
+		
+/*
 		rulesPanel.add(rulesList);
 
 		JScrollPane scrollArea = new JScrollPane(rulesList);
@@ -125,7 +147,14 @@ public class GUI {
 
 		JScrollPane scrollArea2 = new JScrollPane(weightList);
 		rulesPanel.add(scrollArea2);
-
+*/
+		
+		
+		
+		
+		
+		
+		
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 1));
 

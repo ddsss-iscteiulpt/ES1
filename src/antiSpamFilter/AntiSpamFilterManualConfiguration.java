@@ -37,8 +37,8 @@ public class AntiSpamFilterManualConfiguration {
 				try {
 
 					Leitura l = new Leitura(rf);
-					l.setFN(0);
-					l.setFP(0);
+					//l.setFN(0);
+					//l.setFP(0);
 
 					GUI.getInstance().getFp().setText(Integer.toString(l.FP));
 					GUI.getInstance().getFn().setText(Integer.toString(l.FN));
