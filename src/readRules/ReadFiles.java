@@ -20,6 +20,9 @@ import antiSpamFilter.GUI;
 public class ReadFiles {
 
 	private GUI g;
+	private double peso = 0.0;
+
+
 
 	HashMap<String, String> regras = new HashMap<String, String>();
 	File file; // Path deve ser diferente
@@ -40,7 +43,7 @@ public class ReadFiles {
 				int i = 0;
 				double rangeMin = -5;
 				double rangeMax = 5;
-				double peso = 0.0;
+				
 				String line = null;
 				Scanner sc;
 				try {
@@ -77,5 +80,15 @@ public class ReadFiles {
 	public FileReader getReader() {
 		return reader;
 	}
+	
+	public double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(double peso) {
+		this.peso = peso;
+	}
+	
+	
 
 }
