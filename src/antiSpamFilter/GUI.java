@@ -14,6 +14,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 public class GUI {
 
@@ -66,7 +69,7 @@ public class GUI {
 		rulesPath = new JTextField();
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		rulesPath.setPreferredSize(new Dimension(500, 30));
-		rulesPath.setText("C:/Users/Catarina/git/ES1-2017-METIA1-41/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
+		rulesPath.setText("C:/Users/mariana/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
 																					// linha
 																					// n�o
 																					// �
@@ -119,7 +122,44 @@ public class GUI {
 
 		weightList = new JTextArea();
 		
-		
+		weightList.getDocument().putProperty("name", "weightListArea");
+		weightList.getDocument().addDocumentListener(new DocumentListener() {
+			
+			final String newline = "\n";
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				 updateLog(e, "inserted into");
+				
+			}
+
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				 updateLog(e, "removed from");
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			private void updateLog(DocumentEvent e, String action) {
+				Document doc = (Document)e.getDocument();
+	            int changeLength = e.getLength();
+	           
+	            System.out.println(changeLength + " character"
+	              + ((changeLength == 1) ? " " : "s ")
+	              + action + " " + doc.getProperty("name") + "."
+	              + newline
+	              + "  Text length = " + doc.getLength() + newline);
+				
+			}
+
+			
+		});
 		
 		/**
 		 * FOI AQUI QUE ALTEREI!
