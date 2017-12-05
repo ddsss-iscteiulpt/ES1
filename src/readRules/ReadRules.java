@@ -17,7 +17,7 @@ import antiSpamFilter.GUI;
 
 // Os pesos aleatórios estão com casas décimais longas (nao arredondado)
 
-public class ReadFiles {
+public class ReadRules {
 
 	private GUI g;
 	private double peso = 0.0;
@@ -30,7 +30,7 @@ public class ReadFiles {
 
 	FileReader reader = null;
 
-	public ReadFiles(GUI g) {
+	public ReadRules(GUI g) {
 		this.g = g;
 
 	}

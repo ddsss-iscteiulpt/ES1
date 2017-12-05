@@ -8,14 +8,14 @@ import org.junit.Test;
 
 import antiSpamFilter.GUI;
 import readFile.Leitura;
-import readRules.ReadFiles;
+import readRules.ReadRules;
 
 public class TestLeitura {
 
 	@Test
 	public final void testGetFP() {
 		GUI gui = new GUI();
-		ReadFiles read = new ReadFiles(gui);
+		ReadRules read = new ReadRules(gui);
 		//double peso = read.setPeso(5);
 		
 	}

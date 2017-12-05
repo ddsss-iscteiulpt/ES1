@@ -15,9 +15,9 @@ public class Leitura {
 
 	private File[] files;
 	private int c = 0;
-	private ReadFiles readFiles;
-	public int FP;
-	public int FN;
+	private ReadRules readFiles;
+	private int FP;
+	private int FN;
 	
 	public  int getFP(){
 		return FP;
@@ -33,13 +33,17 @@ public class Leitura {
 	       this.FN = FN;
 	    }
 	
-	public Leitura(ReadFiles readFiles) throws IOException {
+	public Leitura(ReadRules readFiles) throws IOException {
 
 		this.readFiles = readFiles;
-		lerFicheiros();
+		lerFicheirosHAMSPAM();
 	}
 
-	private void lerFicheiros() throws IOException {
+	/**
+	 * 
+	 * Esta metodo le os ficheiros ham e spam
+	 */
+	private void lerFicheirosHAMSPAM() throws IOException {
 
 		files = new File("Ficheiros").listFiles(new FileFilter() {
 

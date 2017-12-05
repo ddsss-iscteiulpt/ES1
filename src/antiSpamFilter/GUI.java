@@ -38,6 +38,14 @@ public class GUI {
 	public static GUI getInstance() {
 		return INSTANCE;
 	}
+	
+	
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+
 
 	public GUI() {
 		super();
@@ -58,7 +66,7 @@ public class GUI {
 		rulesPath = new JTextField();
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		rulesPath.setPreferredSize(new Dimension(500, 30));
-		rulesPath.setText("/Users/mariana/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
+		rulesPath.setText("C:/Users/Catarina/git/ES1-2017-METIA1-41/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
 																					// linha
 																					// n�o
 																					// �
@@ -163,6 +171,7 @@ public class GUI {
 		buttonsPanel.add(avQualidade);
 
 		JButton guardar = new JButton("Guardar");
+		guardar.addActionListener(new ListenerForGuardar(this));
 		guardar.setPreferredSize(new Dimension(120, 30));
 		buttonsPanel.add(guardar);
 
