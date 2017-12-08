@@ -17,6 +17,9 @@ import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
+import javax.swing.text.Element;
+
+import org.apache.commons.lang3.SystemUtils;
 
 public class GUI {
 
@@ -69,7 +72,7 @@ public class GUI {
 		rulesPath = new JTextField();
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		rulesPath.setPreferredSize(new Dimension(500, 30));
-		rulesPath.setText("C:/Users/mariana/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
+		rulesPath.setText("/Users/nanix/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
 																					// linha
 																					// n�o
 																					// �
@@ -122,55 +125,11 @@ public class GUI {
 
 		weightList = new JTextArea();
 		
-		weightList.getDocument().putProperty("name", "weightListArea");
-		weightList.getDocument().addDocumentListener(new DocumentListener() {
-			
-			final String newline = "\n";
-			
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				 updateLog(e, "inserted into");
+		//Aumentar tamanho dos numeros
+				Font font = rulesList.getFont();
+				float size = font.getSize() - 1.0f;
+				rulesList.setFont( font.deriveFont(size) );
 				
-			}
-
-			
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				 updateLog(e, "removed from");
-				
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			private void updateLog(DocumentEvent e, String action) {
-				Document doc = (Document)e.getDocument();
-	            int changeLength = e.getLength();
-	           
-	            System.out.println(changeLength + " character"
-	              + ((changeLength == 1) ? " " : "s ")
-	              + action + " " + doc.getProperty("name") + "."
-	              + newline
-	              + "  Text length = " + doc.getLength() + newline);
-				
-			}
-
-			
-		});
-		
-		/**
-		 * FOI AQUI QUE ALTEREI!
-		 * 
-		 * NOTA: Desta forma as regras e os pesos ficam com uma scroll sincronizada
-		 * Há um problema que talvez seja devido ao tamanho do GUI ou da forma como os elementos estão dispostos
-		 * Aquilo que acontece é que não aparecem 20 linhas finais do ficheiro de regras...Mas de resto funciona 100%
-		 * 
-		 * Para voltarem ao código anterior basta "descomentar" o código que está comentado por baixo deste
-		 */
-		
 		
 		JScrollPane scrollArea1 = new JScrollPane(rulesList, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
@@ -185,6 +144,10 @@ public class GUI {
 		rulesPanel.add(scrollArea1);
 		rulesPanel.add(scrollArea2);
 		
+		
+		
+			
+				
 /*
 		rulesPanel.add(rulesList);
 
@@ -195,11 +158,8 @@ public class GUI {
 
 		JScrollPane scrollArea2 = new JScrollPane(weightList);
 		rulesPanel.add(scrollArea2);
-*/
-		
-		
-		
-		
+
+	*/	
 		
 		
 		

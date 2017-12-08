@@ -7,6 +7,7 @@ import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import readRules.*;
@@ -26,24 +27,17 @@ public class Leitura {
 		return FN;
 	}
 
-	public void setFP(int FP) {
-	      this.FP = FP;
-	    }
-	public  void setFN(int FN) {
-	       this.FN = FN;
-	    }
 	
 	public Leitura(ReadRules readFiles) throws IOException {
 
 		this.readFiles = readFiles;
-		lerFicheirosHAMSPAM();
 	}
 
 	/**
 	 * 
-	 * Esta metodo le os ficheiros ham e spam
+	 * Este metodo le os ficheiros ham e spam
 	 */
-	private void lerFicheirosHAMSPAM() throws IOException {
+	public void lerFicheirosHAMSPAM() throws IOException {
 
 		files = new File("Ficheiros").listFiles(new FileFilter() {
 
@@ -83,7 +77,7 @@ public class Leitura {
 					}
 					//String[] divisao = s.nextLine().split("	");
 
-					lerColuna(divisao, i);
+					calcularFPFN(divisao, i);
 
 
 				}
@@ -96,8 +90,7 @@ public class Leitura {
 		
 	}
 
-	private void lerColuna(String[] divisao, int file) throws IOException{
-
+	private void calcularFPFN(String[] divisao, int file) throws IOException{
 
 		//Aten��o vai dar erro (NullPointerException) existem 2 regras que nao estao 
 		//no rules mas aparecem no spam.log --> FM_IS_IT_OUR_ACCOUNT FROM_DOMAIN_NOVOWEL
@@ -107,22 +100,23 @@ public class Leitura {
 				String rule = divisao[i];
 				//pesquisar divisao[i] no hashMap e substituir pelo peso
 				//write no ficheiro
+				
 				String peso = readFiles.getRegras().get(divisao[i]);
-				System.out.println("\n estamos aqui " + divisao[i] + " - " + peso);
-				System.out.println("------> " + peso );
+				
+				   
+				//System.out.println("\n estamos aqui " + divisao[i] + " - " + peso);
+				//System.out.println("------> " + peso );
 				double pesoAux =  Double.parseDouble(peso);
-				System.out.println("PesoAux: " + pesoAux);
+				//System.out.println("PesoAux: " + pesoAux);
 				pesoFinal += pesoAux; 
 			}
 			if(pesoFinal>5 && file == 0){
 				FP++;
-				System.out.println("peso final: " + pesoFinal + " Ficheiro ham --> Esta Linha deu maior que 5 \n");
+				//System.out.println("peso final: " + pesoFinal + " Ficheiro ham --> Esta Linha deu maior que 5 \n");
 			}else if(pesoFinal<5 && file!=0){
 				FN++;
-				System.out.println("peso final: " + pesoFinal + " Ficheiro spam --> Esta Linha deu menor que 5 \n");
+				//System.out.println("peso final: " + pesoFinal + " Ficheiro spam --> Esta Linha deu menor que 5 \n");
 			}
-
-
 	}
 	
 	
@@ -134,5 +128,5 @@ public class Leitura {
 	
 	
 	
-	
+
 }
