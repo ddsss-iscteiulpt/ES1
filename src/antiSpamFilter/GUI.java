@@ -24,7 +24,7 @@ import org.apache.commons.lang3.SystemUtils;
 public class GUI {
 
 	private JFrame frame;
-	private JButton ok;
+
 	private JList<String> rulesList;
 	private JTextArea weightList;
 	private DefaultListModel<String> lista;
@@ -32,26 +32,23 @@ public class GUI {
 	private DefaultListModel<String> listaAuto;
 	private JTextField spamPath;
 	private JTextField hamPath;
-	private JButton ok1;
-	private JButton ok2;
 	private JTextField fp;
 	private JTextField fn;
+
+	private JButton searchRules;
+	private JButton searchHam;
+	private JButton searchSpam;
+
 	private JButton avQualidade;
 	public static final GUI INSTANCE = new GUI();
-
-	// Comment
 
 	public static GUI getInstance() {
 		return INSTANCE;
 	}
-	
-	
 
 	public JFrame getFrame() {
 		return frame;
 	}
-
-
 
 	public GUI() {
 		super();
@@ -61,6 +58,15 @@ public class GUI {
 		buildGui();
 		frame.pack();
 		frame.setVisible(true);
+		frame.setResizable(false);
+	}
+	
+	public void buildGui() {
+
+		addPathPanel();
+		addManualConfig();
+		addAutoConfig();
+
 	}
 
 	public void addPathPanel() {
@@ -72,12 +78,6 @@ public class GUI {
 		rulesPath = new JTextField();
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		rulesPath.setPreferredSize(new Dimension(500, 30));
-		rulesPath.setText("/Users/nanix/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
-																					// linha
-																					// n�o
-																					// �
-																					// suposto
-																					// existir
 		pathPanel.add(rulesPath);
 
 		spamPath = new JTextField();
@@ -90,23 +90,23 @@ public class GUI {
 		hamPath.setPreferredSize(new Dimension(500, 30));
 		pathPanel.add(hamPath);
 
-		JPanel okPanel = new JPanel();
-		okPanel.setLayout(new GridLayout(3, 1));
+		JPanel searchPanel = new JPanel();
+		searchPanel.setLayout(new GridLayout(3, 1));
 
-		ok = new JButton("OK");
-		ok.setPreferredSize(new Dimension(200, 30));
-		okPanel.add(ok);
+		searchRules = new JButton("Procurar");
+		searchRules.setPreferredSize(new Dimension(200, 30));
+		searchPanel.add(searchRules);
 
-		ok1 = new JButton("OK");
-		ok1.setPreferredSize(new Dimension(200, 30));
-		okPanel.add(ok1);
+		searchHam = new JButton("Procurar");
+		searchHam.setPreferredSize(new Dimension(200, 30));
+		searchPanel.add(searchHam);
 
-		ok2 = new JButton("OK");
-		ok2.setPreferredSize(new Dimension(200, 30));
-		okPanel.add(ok2);
+		searchSpam = new JButton("Procurar");
+		searchSpam.setPreferredSize(new Dimension(200, 30));
+		searchPanel.add(searchSpam);
 
 		selectFiles.add(pathPanel);
-		selectFiles.add(okPanel);
+		selectFiles.add(searchPanel);
 
 		frame.add(selectFiles, BorderLayout.NORTH);
 
@@ -124,45 +124,36 @@ public class GUI {
 		rulesList = new JList<String>(lista);
 
 		weightList = new JTextArea();
-		
-		//Aumentar tamanho dos numeros
-				Font font = rulesList.getFont();
-				float size = font.getSize() - 1.0f;
-				rulesList.setFont( font.deriveFont(size) );
-				
-		
-		JScrollPane scrollArea1 = new JScrollPane(rulesList, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		
-		JScrollPane scrollArea2 = new JScrollPane(weightList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		
-		
+
+		// Aumentar tamanho dos numeros
+		Font font = rulesList.getFont();
+		float size = font.getSize() - 1.0f;
+		rulesList.setFont(font.deriveFont(size));
+
+		JScrollPane scrollArea1 = new JScrollPane(rulesList, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+		JScrollPane scrollArea2 = new JScrollPane(weightList, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+
 		scrollArea2.getVerticalScrollBar().setModel(scrollArea1.getVerticalScrollBar().getModel());
-		
-		
-		
-		
+
 		rulesPanel.add(scrollArea1);
 		rulesPanel.add(scrollArea2);
-		
-		
-		
-			
-				
-/*
-		rulesPanel.add(rulesList);
 
-		JScrollPane scrollArea = new JScrollPane(rulesList);
-		rulesPanel.add(scrollArea);
+		/*
+		 * rulesPanel.add(rulesList);
+		 * 
+		 * JScrollPane scrollArea = new JScrollPane(rulesList);
+		 * rulesPanel.add(scrollArea);
+		 * 
+		 * rulesPanel.add(weightList);
+		 * 
+		 * JScrollPane scrollArea2 = new JScrollPane(weightList);
+		 * rulesPanel.add(scrollArea2);
+		 * 
+		 */
 
-		rulesPanel.add(weightList);
-
-		JScrollPane scrollArea2 = new JScrollPane(weightList);
-		rulesPanel.add(scrollArea2);
-
-	*/	
-		
-		
-		
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 1));
 
@@ -198,22 +189,6 @@ public class GUI {
 
 		frame.add(manualConfig, BorderLayout.CENTER);
 
-	}
-
-	public JButton getAvQualidade() {
-		return avQualidade;
-	}
-
-	public JTextField getFp() {
-		return fp;
-	}
-
-	public JTextField getFn() {
-		return fn;
-	}
-
-	public JTextField getRulesPath() {
-		return rulesPath;
 	}
 
 	public void addAutoConfig() {
@@ -273,21 +248,29 @@ public class GUI {
 		frame.add(autoConfig, BorderLayout.SOUTH);
 
 	}
+	
+	public JButton getAvQualidade() {
+		return avQualidade;
+	}
 
-	public void buildGui() {
+	public JTextField getFp() {
+		return fp;
+	}
 
-		addPathPanel();
-		addManualConfig();
-		addAutoConfig();
+	public JTextField getFn() {
+		return fn;
+	}
 
+	public JTextField getRulesPath() {
+		return rulesPath;
 	}
 
 	public DefaultListModel<String> getLista() {
 		return lista;
 	}
 
-	public JButton getOk() {
-		return ok;
+	public JButton getSearchRules() {
+		return searchRules;
 	}
 
 	public JList<String> getRulesList() {

@@ -34,7 +34,6 @@ public class ReadRules {
 
 
 	HashMap<String, String> regras = new HashMap<String, String>();
-	File file; // Path deve ser diferente
 	// Ficheiros rules.cf fica na mesma package que as classes
 
 	FileReader reader = null;
@@ -45,9 +44,8 @@ public class ReadRules {
 	}
 
 	@SuppressWarnings("resource")
-	public void read() throws IOException {
+	public void read(File file) throws IOException {
 
-				file = new File(g.getRulesPath().getText());
 				Random rand = new Random();
 				int i = 0;
 				double rangeMin = -5;
@@ -121,10 +119,6 @@ public class ReadRules {
 	
 	public HashMap<String, String> getRegras() {
 		return regras;
-	}
-
-	public File getFile() {
-		return file;
 	}
 
 	public FileReader getReader() {
