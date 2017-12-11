@@ -21,7 +21,7 @@ public class AntiSpamFilterManualConfiguration {
 
 				try {
 					rf = new ReadRules(GUI.getInstance());
-					rf.read();
+					rf.read(true);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -31,7 +31,7 @@ public class AntiSpamFilterManualConfiguration {
 
 		});
 		
-		GUI.getInstance().getAvQualidade().addActionListener(new ActionListener() {
+		GUI.getInstance().getAvQualidadeMan().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -45,8 +45,8 @@ public class AntiSpamFilterManualConfiguration {
 					l.lerFicheirosHAMSPAM();
 					
 					
-					GUI.getInstance().getFp().setText(Integer.toString(l.getFP()));
-					GUI.getInstance().getFn().setText(Integer.toString(l.getFN()));
+					GUI.getInstance().getFpMan().setText(Integer.toString(l.getFP()));
+					GUI.getInstance().getFnMan().setText(Integer.toString(l.getFN()));
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

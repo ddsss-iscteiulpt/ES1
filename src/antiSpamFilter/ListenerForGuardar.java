@@ -17,7 +17,7 @@ public class ListenerForGuardar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		//System.out.println("Estou a carregar no botao!!");
-		if(!gui.getFn().getText().equals("") && !gui.getFp().getText().equals("")) {
+		if(!gui.getFnMan().getText().equals("") && !gui.getFpMan().getText().equals("")) {
 			System.out.println("podes guardar valores");
 			
 			

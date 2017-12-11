@@ -31,6 +31,7 @@ public class Leitura {
 	public Leitura(ReadRules readFiles) throws IOException {
 
 		this.readFiles = readFiles;
+		lerFicheirosHAMSPAM();
 	}
 
 	/**
@@ -86,7 +87,7 @@ public class Leitura {
 				System.out.println("Erro no Scanner");
 			}
 		}
-		System.out.println("\n FP: " + FP + "\n FN: " + FN);
+//		System.out.println("\n FP: " + FP + "\n FN: " + FN);
 		
 	}
 

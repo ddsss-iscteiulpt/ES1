@@ -37,6 +37,7 @@ public class GUI {
 	private JTextField fp;
 	private JTextField fn;
 	private JButton avQualidade;
+	private JButton avQualidadeAuto;
 	public static final GUI INSTANCE = new GUI();
 
 	// Comment
@@ -72,7 +73,7 @@ public class GUI {
 		rulesPath = new JTextField();
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		rulesPath.setPreferredSize(new Dimension(500, 30));
-		rulesPath.setText("/Users/nanix/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
+		rulesPath.setText("/Users/nuno/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
 																					// linha
 																					// n�o
 																					// �
@@ -200,15 +201,15 @@ public class GUI {
 
 	}
 
-	public JButton getAvQualidade() {
+	public JButton getAvQualidadeMan() {
 		return avQualidade;
 	}
 
-	public JTextField getFp() {
+	public JTextField getFpMan() {
 		return fp;
 	}
 
-	public JTextField getFn() {
+	public JTextField getFnMan() {
 		return fn;
 	}
 
@@ -241,7 +242,7 @@ public class GUI {
 		JPanel buttonsPanelAuto = new JPanel();
 		buttonsPanelAuto.setLayout(new GridLayout(2, 1));
 
-		JButton avQualidadeAuto = new JButton("Av. qualidade");
+		avQualidadeAuto = new JButton("Av. qualidade");
 		avQualidadeAuto.setPreferredSize(new Dimension(120, 30));
 		buttonsPanelAuto.add(avQualidadeAuto);
 
@@ -272,6 +273,10 @@ public class GUI {
 
 		frame.add(autoConfig, BorderLayout.SOUTH);
 
+	}
+	
+	public JButton getAvQualidadeAuto() {
+		return avQualidadeAuto;
 	}
 
 	public void buildGui() {

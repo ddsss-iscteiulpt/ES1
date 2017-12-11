@@ -3,14 +3,15 @@ package readRules;
 import java.io.BufferedReader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Map.Entry;
 
 import javax.swing.text.Element;
@@ -34,6 +35,7 @@ public class ReadRules {
 
 
 	HashMap<String, String> regras = new HashMap<String, String>();
+	Queue<String> nomeRegras = new LinkedList<String>();
 	File file; // Path deve ser diferente
 	// Ficheiros rules.cf fica na mesma package que as classes
 
@@ -45,7 +47,7 @@ public class ReadRules {
 	}
 
 	@SuppressWarnings("resource")
-	public void read() throws IOException {
+	public void read(boolean manual) throws IOException {
 
 				file = new File(g.getRulesPath().getText());
 				Random rand = new Random();
@@ -57,7 +59,7 @@ public class ReadRules {
 				Scanner sc;
 				try {
 					sc = new Scanner(file);
-
+					if(manual==true){
 					// Leitura linha a linha do ficheiro e guardar no HashMap
 					while (sc.hasNextLine()) {
 						i++;
@@ -71,7 +73,17 @@ public class ReadRules {
 						g.getLista().addElement(s);
 						g.getWeightList().append(pesos);
 						g.getWeightList().append("\n");
-				
+					}
+					}else{
+						while (sc.hasNextLine()) {
+							i++;
+							line = sc.next();
+							nomeRegras.add(line);                                 //array com o nome das regras
+							// 							System.out.println(line + " " + peso);
+							//							g.getLista().addElement(s);
+							//							g.getWeightList().append(pesos);
+							//							g.getWeightList().append("\n");
+						}
 						
 
 				
@@ -114,13 +126,16 @@ public class ReadRules {
 		for (Entry<String, String> entry : regras.entrySet()) {
 		    String key = entry.getKey();
 		    String value = entry.getValue();
-		   System.out.println("Regra = " + key + ", Peso = " + value);
+//		   System.out.println("Regra = " + key + ", Peso = " + value);
 		}
 	}
 	
 	
 	public HashMap<String, String> getRegras() {
 		return regras;
+	}
+	public Queue<String> getNomeRegras() {
+		return nomeRegras;
 	}
 
 	public File getFile() {
