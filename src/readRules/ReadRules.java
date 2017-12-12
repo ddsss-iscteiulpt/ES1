@@ -28,6 +28,8 @@ public class ReadRules {
 	private GUI g;
 	private double peso = 0.0;
 	private int numLinhas;
+	
+
 	private String line = null;
 	private String pesos;
 	private String regras2;
@@ -158,6 +160,8 @@ public class ReadRules {
 		this.peso = peso;
 	}
 	
-	
+	public int getNumLinhas() {
+		return numLinhas;
+	}
 
 }
