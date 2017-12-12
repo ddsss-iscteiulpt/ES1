@@ -31,7 +31,7 @@ public class Leitura {
 	public Leitura(ReadRules readFiles) throws IOException {
 
 		this.readFiles = readFiles;
-		lerFicheirosHAMSPAM();
+		//lerFicheirosHAMSPAM();
 	}
 
 	/**
@@ -105,8 +105,8 @@ public class Leitura {
 				String peso = readFiles.getRegras().get(divisao[i]);
 				
 				   
-				//System.out.println("\n estamos aqui " + divisao[i] + " - " + peso);
-				//System.out.println("------> " + peso );
+//				System.out.println("\n estamos aqui " + divisao[i] + " - " + peso);
+//				System.out.println("------> " + peso );
 				double pesoAux =  Double.parseDouble(peso);
 				//System.out.println("PesoAux: " + pesoAux);
 				pesoFinal += pesoAux; 
