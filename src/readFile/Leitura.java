@@ -84,7 +84,6 @@ public class Leitura {
 				}
 
 			} catch (FileNotFoundException e) {
-				System.out.println("Erro no Scanner");
 			}
 		}
 //		System.out.println("\n FP: " + FP + "\n FN: " + FN);
@@ -111,13 +110,18 @@ public class Leitura {
 				//System.out.println("PesoAux: " + pesoAux);
 				pesoFinal += pesoAux; 
 			}
-			if(pesoFinal>5 && file == 0){
+			if(pesoFinal>=5 && file == 0){
 				FP++;
 				//System.out.println("peso final: " + pesoFinal + " Ficheiro ham --> Esta Linha deu maior que 5 \n");
 			}else if(pesoFinal<5 && file!=0){
 				FN++;
 				//System.out.println("peso final: " + pesoFinal + " Ficheiro spam --> Esta Linha deu menor que 5 \n");
 			}
+	}
+	
+	
+	public ReadRules getReadFiles() {
+		return readFiles;
 	}
 	
 	
