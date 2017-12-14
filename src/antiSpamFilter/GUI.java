@@ -50,6 +50,8 @@ public class GUI {
 	private JButton avQualidade;
 	private JButton avQualidadeAuto;
 	private JTextArea weightListAuto;
+	private JTextField fpAuto;
+	private JTextField fnAuto;
 	public static final GUI INSTANCE = new GUI();
 
 	public static GUI getInstance() {
@@ -289,14 +291,14 @@ public class GUI {
 		JLabel fpLabelAuto = new JLabel("FP");
 		fpFnAuto.add(fpLabelAuto);
 
-		JTextField fpAuto = new JTextField();
+		fpAuto = new JTextField();
 		fpAuto.setPreferredSize(new Dimension(50, 50));
 		fpFnAuto.add(fpAuto);
 
 		JLabel fnLabelAuto = new JLabel("FN");
 		fpFnAuto.add(fnLabelAuto);
 
-		JTextField fnAuto = new JTextField();
+		fnAuto = new JTextField();
 		fnAuto.setPreferredSize(new Dimension(50, 50));
 		fpFnAuto.add(fnAuto);
 
@@ -306,6 +308,14 @@ public class GUI {
 
 	}
 	
+	public JTextField getFpAuto() {
+		return fpAuto;
+	}
+
+	public JTextField getFnAuto() {
+		return fnAuto;
+	}
+
 	public DefaultListModel<String> getListaAuto() {
 		return listaAuto;
 	}

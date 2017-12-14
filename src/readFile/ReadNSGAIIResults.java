@@ -68,6 +68,8 @@ public class ReadNSGAIIResults {
 		System.out.println(aux +"\n "+pos);
 		extractPesos(pos);
 		
+		GUI.getInstance().getFnAuto().setText(Collections.min(aux));
+		
 	}
 
 	/**
