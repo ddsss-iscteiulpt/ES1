@@ -16,6 +16,8 @@ import org.uma.jmetal.util.experiment.component.*;
 import org.uma.jmetal.util.experiment.util.ExperimentAlgorithm;
 import org.uma.jmetal.util.experiment.util.ExperimentProblem;
 import readFile.ReadNSGAIIResults;
+import readRules.ReadRules;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -25,6 +27,8 @@ import java.util.List;
 
 public class AntiSpamFilterAutomaticConfiguration {
   private static final int INDEPENDENT_RUNS = 5 ;
+  
+  private ReadRules rf;
 
   public AntiSpamFilterAutomaticConfiguration(){
 	  
@@ -33,6 +37,8 @@ public class AntiSpamFilterAutomaticConfiguration {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
+					rf = new ReadRules(GUI.getInstance());
+					rf.read(false, GUI.getInstance().getRulesFile());
 					init();
 					ReadNSGAIIResults rr = new ReadNSGAIIResults(GUI.getInstance());
 					rr.read();

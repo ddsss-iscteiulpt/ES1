@@ -88,6 +88,8 @@ public class ReadRules {
 							//							g.getLista().addElement(s);
 							//							g.getWeightList().append(pesos);
 							//							g.getWeightList().append("\n");
+							String s = line;
+							g.getListaAuto().addElement(s);
 						}
 						
 

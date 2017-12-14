@@ -4,8 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 
@@ -24,6 +31,7 @@ import org.apache.commons.lang3.SystemUtils;
 public class GUI {
 
 	private JFrame frame;
+	private File rulesFile;
 
 	private JList<String> rulesList;
 	private JTextArea weightList;
@@ -41,6 +49,7 @@ public class GUI {
 
 	private JButton avQualidade;
 	private JButton avQualidadeAuto;
+	private JTextArea weightListAuto;
 	public static final GUI INSTANCE = new GUI();
 
 	public static GUI getInstance() {
@@ -103,6 +112,29 @@ public class GUI {
 
 		searchRules = new JButton("Procurar");
 		searchRules.setPreferredSize(new Dimension(200, 30));
+		searchRules.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("CF files", "cf");
+				fileChooser.addChoosableFileFilter(filter);
+
+				int returnValue = fileChooser.showOpenDialog(null);
+				if (returnValue == JFileChooser.APPROVE_OPTION) {
+					if (fileChooser.getSelectedFile().isFile()) {
+						rulesFile = fileChooser.getSelectedFile();
+						GUI.getInstance().getRulesPath().setText(rulesFile.getPath());
+
+					}
+
+				}
+
+			}
+
+		});
 		searchPanel.add(searchRules);
 
 		searchHam = new JButton("Procurar");
@@ -226,7 +258,7 @@ public class GUI {
 
 		JList<String> rulesListAuto = new JList<String>(listaAuto);
 
-		JTextArea weightListAuto = new JTextArea();
+		weightListAuto = new JTextArea();
 
 		rulesPanelAuto.add(rulesListAuto);
 
@@ -274,6 +306,14 @@ public class GUI {
 
 	}
 	
+	public DefaultListModel<String> getListaAuto() {
+		return listaAuto;
+	}
+
+	public JTextArea getWeightListAuto() {
+		return weightListAuto;
+	}
+
 	public JButton getAvQualidadeAuto() {
 		return avQualidadeAuto;
 	}
@@ -305,6 +345,10 @@ public class GUI {
 
 	public JTextArea getWeightList() {
 		return weightList;
+	}
+
+	public File getRulesFile() {
+		return rulesFile;
 	}
 
 }

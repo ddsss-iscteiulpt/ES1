@@ -40,7 +40,7 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 	  public void evaluate(DoubleSolution solution){
 //			System.out.println("-----------------------------------------------");
 			double aux, xi, xj;
-			File file = new File("/Users/nuno/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
+			File file = new File("/Users/Diogo/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
 			double[] fx = new double[getNumberOfObjectives()];
 			double[] x = new double[getNumberOfVariables()];
 			try {

@@ -50,7 +50,7 @@ public class ReadNSGAIIResults {
 	@SuppressWarnings("resource")
 	public void read() throws IOException{
 
-		file = new File("C:/Users/nuno/git/ES1-2017-METIA1-41/"
+		file = new File("C:/Users/Diogo/git/ES1-2017-METIA1-41/"
 				+ "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
 
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -83,7 +83,7 @@ public class ReadNSGAIIResults {
 	 * @throws IOException --> Exceção lançada se o ficheiro não for encontrado.
 	 */
 	private void extractPesos(int pos) throws IOException {
-		file1 = new File("C:/Users/nuno/git/ES1-2017-METIA1-41/"
+		file1 = new File("C:/Users/Diogo/git/ES1-2017-METIA1-41/"
 				+ "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
 		BufferedReader br = new BufferedReader(new FileReader(file1));
 		String line = "";
@@ -96,6 +96,7 @@ public class ReadNSGAIIResults {
 					String peso = columns[j];
 					System.out.println(peso);
 					pesos.add(peso);
+					g.getWeightListAuto().append(peso + "\n");
 				}
 				break;
 			}else{
