@@ -17,12 +17,21 @@ import java.util.Scanner;
 
 import antiSpamFilter.GUI;
 
+/**
+ * 
+ * @author nuno
+ *Class responsável pela Leitura dos ficheiros onde constam os resultados
+ *depois de correr o algoritmo NSGAII;
+ */
+
 public class ReadNSGAIIResults {
 
 	private File file, file1;
 	private Queue<String> pesos = new LinkedList<>();
 	private GUI g;
 	private String FP;
+	private int pos;
+	private ArrayList<String> aux = new ArrayList<>();
 
 	public ReadNSGAIIResults(){}
 	
@@ -30,16 +39,24 @@ public class ReadNSGAIIResults {
 		this.g=g;
 	}
 
+	/**
+	 * função responsável pela leitura do ficheiro AntiSpamFilterProblem.NSGAII.rf;
+	 * Este ficheiro contém uma culuna com FPs e FNs calculados com o alghorithm NSGAII;
+	 * FNs econtram-se na segunda coluna, faz-se leitura da segunda coluna e retira-se
+	 * o valor mais baixo;
+	 * 
+	 * @throws IOException
+	 */
 	@SuppressWarnings("resource")
 	public void read() throws IOException{
 
-		file = new File("C:/Users/nuno/git/ES1-2017-METIA1-41(2)/"
+		file = new File("C:/Users/nuno/git/ES1-2017-METIA1-41/"
 				+ "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
 
 		BufferedReader br = new BufferedReader(new FileReader(file));
 		String line = br.readLine();
 		String[] columns = line.split(" ");
-		ArrayList<String> aux = new ArrayList<>();
+//		ArrayList<String> aux = new ArrayList<>();
 		aux.add(columns[1]);
 		while((line = br.readLine()) != null) {
 			System.out.println(line);
@@ -47,14 +64,26 @@ public class ReadNSGAIIResults {
 			aux.add(columns[1]);
 		}
 		br.close();
-		int pos = aux.indexOf(Collections.min(aux));
+		pos = aux.indexOf(Collections.min(aux));
 		System.out.println(aux +"\n "+pos);
 		extractPesos(pos);
 		
 	}
 
+	/**
+	 * 
+	 * @param pos --> parâmetro que vem da função read();
+	 * posição onde se encontra o menor número de FN;  
+	 * Esta posição corresponde à mesma posição (linha) onde se encontram 
+	 * os pesos, no ficheiro AntiSpamFilterProblem.NSGAII.rs, adequados para obter
+	 * o menor numero de FNs
+	 * 
+	 * esta função é responsável por retirar os pesos do ficheiro e pô-los na JtextArea
+	 * 
+	 * @throws IOException --> Exceção lançada se o ficheiro não for encontrado.
+	 */
 	private void extractPesos(int pos) throws IOException {
-		file1 = new File("C:/Users/nuno/git/ES1-2017-METIA1-41(2)/"
+		file1 = new File("C:/Users/nuno/git/ES1-2017-METIA1-41/"
 				+ "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
 		BufferedReader br = new BufferedReader(new FileReader(file1));
 		String line = "";
@@ -75,5 +104,17 @@ public class ReadNSGAIIResults {
 			}
 		}	
 		br.close();
+	}
+	
+	public Queue<String> getPesos(){
+		return pesos;
+	}
+	
+	public int getPos(){
+		return pos;
+	}
+	
+	public ArrayList<String> getAux(){
+		return aux;
 	}
 }
