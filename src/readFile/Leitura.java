@@ -13,9 +13,9 @@ import java.util.Scanner;
 import readRules.*;
 
 /**  
-* Leitura.java - esta classe le os ficheiros HAM e SPAM e separa-los apenas restanto a coluna que contem nome das
+* Leitura.java - esta classe le os ficheiros HAM e SPAM e separa-os apenas restanto a coluna que contem nome das
 * regras.  
-* @author  Catarina
+* 
 * 
 */
 public class Leitura {

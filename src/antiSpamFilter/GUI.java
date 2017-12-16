@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -28,10 +29,17 @@ import javax.swing.text.Element;
 
 import org.apache.commons.lang3.SystemUtils;
 
+import readRules.ReadRules;
+
 public class GUI {
 
 	private JFrame frame;
 	private File rulesFile;
+	private ReadRules rf;
+
+	public ReadRules getRf() {
+		return rf;
+	}
 
 	private JList<String> rulesList;
 	private JTextArea weightList;
@@ -129,7 +137,14 @@ public class GUI {
 					if (fileChooser.getSelectedFile().isFile()) {
 						rulesFile = fileChooser.getSelectedFile();
 						GUI.getInstance().getRulesPath().setText(rulesFile.getPath());
-
+						try {
+							rf = new ReadRules(GUI.getInstance());
+							rf.read(true, rulesFile);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							// e1.printStackTrace();
+							System.out.println("Ficheiro não localizado");
+						}
 					}
 
 				}
@@ -168,9 +183,9 @@ public class GUI {
 		weightList = new JTextArea();
 
 		// Aumentar tamanho dos numeros
-		Font font = rulesList.getFont();
-		float size = font.getSize() - 1.0f;
-		rulesList.setFont(font.deriveFont(size));
+		Font font = weightList.getFont();
+		float size = font.getSize() + 1.0f;
+		weightList.setFont(font.deriveFont(size));
 
 		JScrollPane scrollArea1 = new JScrollPane(rulesList, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -183,19 +198,7 @@ public class GUI {
 		rulesPanel.add(scrollArea1);
 		rulesPanel.add(scrollArea2);
 
-		/*
-		 * rulesPanel.add(rulesList);
-		 * 
-		 * JScrollPane scrollArea = new JScrollPane(rulesList);
-		 * rulesPanel.add(scrollArea);
-		 * 
-		 * rulesPanel.add(weightList);
-		 * 
-		 * JScrollPane scrollArea2 = new JScrollPane(weightList);
-		 * rulesPanel.add(scrollArea2);
-		 * 
-		 */
-
+	
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(2, 1));
 
@@ -261,16 +264,27 @@ public class GUI {
 		JList<String> rulesListAuto = new JList<String>(listaAuto);
 
 		weightListAuto = new JTextArea();
+		weightListAuto.setEditable(false);
 
 		rulesPanelAuto.add(rulesListAuto);
+		
+		// Aumentar tamanho dos numeros
+				Font font = weightListAuto.getFont();
+				float size = font.getSize() + 1.0f;
+				weightListAuto.setFont(font.deriveFont(size));
+		
+		JScrollPane scrollArea1 = new JScrollPane(rulesListAuto, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-		JScrollPane scrollArea = new JScrollPane(rulesListAuto);
-		rulesPanelAuto.add(scrollArea);
+		JScrollPane scrollArea2 = new JScrollPane(weightListAuto, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-		rulesPanelAuto.add(weightListAuto);
+		scrollArea2.getVerticalScrollBar().setModel(scrollArea1.getVerticalScrollBar().getModel());
 
-		JScrollPane scrollArea2 = new JScrollPane(weightListAuto);
+		rulesPanelAuto.add(scrollArea1);
 		rulesPanelAuto.add(scrollArea2);
+
+		
 
 		JPanel buttonsPanelAuto = new JPanel();
 		buttonsPanelAuto.setLayout(new GridLayout(2, 1));
