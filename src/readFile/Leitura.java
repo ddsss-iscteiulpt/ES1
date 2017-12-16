@@ -12,6 +12,12 @@ import java.util.Scanner;
 
 import readRules.*;
 
+/**  
+* Leitura.java - esta classe le os ficheiros HAM e SPAM e separa-los apenas restanto a coluna que contem nome das
+* regras.  
+* @author  Catarina
+* 
+*/
 public class Leitura {
 
 	private File[] files;
@@ -27,6 +33,11 @@ public class Leitura {
 		return FN;
 	}
 
+	/**
+	 * Constructor.
+	 * @param readFiles (required) 
+	 * @throws IOException
+	 */
 	
 	public Leitura(ReadRules readFiles) throws IOException {
 
@@ -35,8 +46,8 @@ public class Leitura {
 	}
 
 	/**
-	 * 
-	 * Este metodo le os ficheiros ham e spam
+	 * Este metodo le os ficheiros ham e spam e divide-os restando os nomes das regras
+	 * @throws IOException
 	 */
 	public void lerFicheirosHAMSPAM() throws IOException {
 
@@ -45,7 +56,7 @@ public class Leitura {
 			@Override
 			public boolean accept(File f) {
 
-				// se retornar verdadeiro, f ser� incluido
+				// se retornar verdadeiro, f e incluido
 
 				if (f.getName().endsWith("txt"))
 					return true;
@@ -90,6 +101,12 @@ public class Leitura {
 		
 	}
 
+	/**
+	 * Este metodo calcula os valores de FP e FN
+	 * @param divisao e o nome da regra
+	 * @param file pode ser o HAM ou o SPAM
+	 * @throws IOException
+	 */
 	private void calcularFPFN(String[] divisao, int file) throws IOException{
 
 		//Aten��o vai dar erro (NullPointerException) existem 2 regras que nao estao 
@@ -119,7 +136,10 @@ public class Leitura {
 			}
 	}
 	
-	
+	/**
+	 * 
+	 * @return o read rules que e passado no construtor
+	 */
 	public ReadRules getReadFiles() {
 		return readFiles;
 	}
