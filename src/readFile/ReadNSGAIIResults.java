@@ -27,6 +27,7 @@ import antiSpamFilter.GUI;
 public class ReadNSGAIIResults {
 
 	private File file, file1;
+	private File[] files;
 	private Queue<String> pesos = new LinkedList<>();
 	private GUI g;
 	private String FP;
@@ -37,6 +38,20 @@ public class ReadNSGAIIResults {
 	
 	public ReadNSGAIIResults(GUI g){
 		this.g=g;
+		files = new File("experimentBaseDirectory/referenceFronts").listFiles(new FileFilter() {
+
+			@Override
+			public boolean accept(File f) {
+
+				// se retornar verdadeiro, f e incluido
+
+				if (f.getName().endsWith("rs")||f.getName().endsWith("rf")){
+					return true;
+				}else
+					return false;
+			}
+		});
+		
 	}
 
 	/**
@@ -50,10 +65,7 @@ public class ReadNSGAIIResults {
 	@SuppressWarnings("resource")
 	public void read() throws IOException{
 
-		file = new File("C:/Users/Diogo/git/ES1-2017-METIA1-41/"
-				+ "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rf");
-
-		BufferedReader br = new BufferedReader(new FileReader(file));
+		BufferedReader br = new BufferedReader(new FileReader(files[0]));
 		String line = br.readLine();
 		String[] columns = line.split(" ");
 //		ArrayList<String> aux = new ArrayList<>();
@@ -85,9 +97,8 @@ public class ReadNSGAIIResults {
 	 * @throws IOException --> Exceção lançada se o ficheiro não for encontrado.
 	 */
 	private void extractPesos(int pos) throws IOException {
-		file1 = new File("C:/Users/Diogo/git/ES1-2017-METIA1-41/"
-				+ "experimentBaseDirectory/referenceFronts/AntiSpamFilterProblem.NSGAII.rs");
-		BufferedReader br = new BufferedReader(new FileReader(file1));
+		
+		BufferedReader br = new BufferedReader(new FileReader(files[1]));
 		String line = "";
 		String[] columns = line.split(" ");
 		int i = 0;
