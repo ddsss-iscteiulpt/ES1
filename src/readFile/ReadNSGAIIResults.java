@@ -75,6 +75,7 @@ public class ReadNSGAIIResults {
 			columns = line.split(" ");
 			aux.add(columns[1]);
 		}
+		
 		br.close();
 		pos = aux.indexOf(Collections.min(aux));
 		System.out.println(aux +"\n "+pos);
