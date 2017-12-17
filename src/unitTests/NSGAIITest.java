@@ -13,7 +13,7 @@ public class NSGAIITest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void testReadNSGAIIResults() throws IOException {
-		ReadNSGAIIResults rn = new ReadNSGAIIResults();
+	ReadNSGAIIResults rn = new ReadNSGAIIResults();
 		rn.read();
 		int indexMin = 0;
 		double min = 0;
