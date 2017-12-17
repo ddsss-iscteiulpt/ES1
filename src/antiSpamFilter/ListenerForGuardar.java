@@ -45,7 +45,7 @@ public class ListenerForGuardar implements ActionListener {
 			try {
 				
 				File file2 = new File("rules2.txt");
-				PrintWriter print3 = new PrintWriter("rules3.txt");
+				PrintWriter print3 = new PrintWriter("ConfiguraçãoManual.txt");
 				
 				
 				rules = new Scanner(file);
@@ -58,6 +58,7 @@ public class ListenerForGuardar implements ActionListener {
 					
 					
 				}
+				JOptionPane.showMessageDialog(gui.getFrame(), "Guardado em : ConfiguraçãoManual.txt");
 				//System.out.println("line: " + line);
 				rules.close();
 				rules2.close();

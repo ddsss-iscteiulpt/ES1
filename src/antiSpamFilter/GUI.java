@@ -99,7 +99,7 @@ public class GUI {
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		rulesPath.setPreferredSize(new Dimension(500, 30));
 
-		rulesPath.setText("/Users/nuno/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
+		//rulesPath.setText("/Users/nuno/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
 																					// linha
 																					// n�o
 																					// �
@@ -120,7 +120,7 @@ public class GUI {
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new GridLayout(3, 1));
 
-		searchRules = new JButton("Procurar");
+		searchRules = new JButton("Ficheiro de Regras");
 		searchRules.setPreferredSize(new Dimension(200, 30));
 		searchRules.addActionListener(new ActionListener() {
 
@@ -154,11 +154,11 @@ public class GUI {
 		});
 		searchPanel.add(searchRules);
 
-		searchHam = new JButton("Procurar");
+		searchHam = new JButton("Ficheiro Ham");
 		searchHam.setPreferredSize(new Dimension(200, 30));
 		searchPanel.add(searchHam);
 
-		searchSpam = new JButton("Procurar");
+		searchSpam = new JButton("Ficheiro Spam");
 		searchSpam.setPreferredSize(new Dimension(200, 30));
 		searchPanel.add(searchSpam);
 

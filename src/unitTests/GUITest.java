@@ -1,9 +1,14 @@
 package unitTests;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 public class GUITest {
+
+	@Test
+	public void testGetRf() {
+	}
 
 	@Test
 	public void testGetInstance() {
@@ -50,6 +55,22 @@ public class GUITest {
 	}
 
 	@Test
+	public void testGetFpAuto() {
+	}
+
+	@Test
+	public void testGetFnAuto() {
+	}
+
+	@Test
+	public void testGetListaAuto() {
+	}
+
+	@Test
+	public void testGetWeightListAuto() {
+	}
+
+	@Test
 	public void testGetAvQualidadeAuto() {
 	}
 
@@ -79,6 +100,10 @@ public class GUITest {
 
 	@Test
 	public void testGetWeightList() {
+	}
+
+	@Test
+	public void testGetRulesFile() {
 	}
 
 }
