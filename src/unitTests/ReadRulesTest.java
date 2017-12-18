@@ -92,5 +92,15 @@ public class ReadRulesTest {
 		
 		
 	}
+	
+	@Test
+	public void testGetFile() {
+		r.getFile();
+	}
+
+	@Test
+	public void testGetReader() {
+		r.getReader();
+	}
 
 }

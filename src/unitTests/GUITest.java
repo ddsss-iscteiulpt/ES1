@@ -4,7 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import antiSpamFilter.GUI;
+
 public class GUITest {
+	
+	GUI gui = new GUI();
 
 	@Test
 	public void testGetRf() {
@@ -16,6 +20,7 @@ public class GUITest {
 
 	@Test
 	public void testGetFrame() {
+		gui.getFrame();
 	}
 
 	@Test
@@ -28,6 +33,8 @@ public class GUITest {
 
 	@Test
 	public void testAddPathPanel() {
+		
+		gui.getSearchRules().doClick();
 	}
 
 	@Test
@@ -44,10 +51,17 @@ public class GUITest {
 
 	@Test
 	public void testGetFnMan() {
+		gui.getFnMan();
 	}
 
 	@Test
 	public void testGetRulesPath() {
+		gui.getRulesPath();
+	}
+	
+	@Test
+	public void testGetGuardar() {
+		gui.getGuardar();
 	}
 
 	@Test
@@ -56,18 +70,26 @@ public class GUITest {
 
 	@Test
 	public void testGetFpAuto() {
+		
+		gui.getFpAuto();
 	}
 
 	@Test
 	public void testGetFnAuto() {
+		
+		gui.getFnAuto();
 	}
 
 	@Test
 	public void testGetListaAuto() {
+		
+		gui.getListaAuto();
 	}
 
 	@Test
 	public void testGetWeightListAuto() {
+		
+		gui.getWeightListAuto();
 	}
 
 	@Test
@@ -76,14 +98,20 @@ public class GUITest {
 
 	@Test
 	public void testGetAvQualidade() {
+		gui.getAvQualidade();
 	}
 
 	@Test
+	
 	public void testGetFp() {
+		
+		gui.getFp();
 	}
 
 	@Test
 	public void testGetFn() {
+		
+		gui.getFn();
 	}
 
 	@Test
@@ -92,10 +120,16 @@ public class GUITest {
 
 	@Test
 	public void testGetSearchRules() {
+		
+		gui.getSearchRules();
+		
+		
 	}
 
 	@Test
 	public void testGetRulesList() {
+		
+		gui.getRulesList();
 	}
 
 	@Test
@@ -104,6 +138,8 @@ public class GUITest {
 
 	@Test
 	public void testGetRulesFile() {
+		
+		gui.getRulesFile();
 	}
 
 }
