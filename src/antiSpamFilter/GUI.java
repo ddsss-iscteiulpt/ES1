@@ -60,6 +60,9 @@ public class GUI {
 
 	private JButton avQualidade;
 	private JButton avQualidadeAuto;
+	private JButton guardar;
+
+
 	private JTextArea weightListAuto;
 	private JTextField fpAuto;
 	private JTextField fnAuto;
@@ -213,7 +216,7 @@ public class GUI {
 		avQualidade.setPreferredSize(new Dimension(120, 30));
 		buttonsPanel.add(avQualidade);
 
-		JButton guardar = new JButton("Guardar");
+		guardar = new JButton("Guardar");
 		guardar.addActionListener(new ListenerForGuardar(this));
 		guardar.setPreferredSize(new Dimension(120, 30));
 		buttonsPanel.add(guardar);
@@ -259,7 +262,9 @@ public class GUI {
 	public JTextField getRulesPath() {
 		return rulesPath;
 	}
-
+	public JButton getGuardar() {
+		return guardar;
+	}
 	public void addAutoConfig() {
 		listaAuto = new DefaultListModel<String>();
 
