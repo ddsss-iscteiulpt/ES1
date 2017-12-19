@@ -28,9 +28,12 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 
 import org.apache.commons.lang3.SystemUtils;
-
 import readRules.ReadRules;
-
+/**
+ * GUI.java- esta classe cria a interfaceGrafica
+ * @author Catarina
+ *
+ */
 public class GUI {
 
 	private JFrame frame;
@@ -135,11 +138,15 @@ public class GUI {
 				int returnValue = fileChooser.showOpenDialog(null);
 				if (returnValue == JFileChooser.APPROVE_OPTION) {
 					if (fileChooser.getSelectedFile().isFile()) {
-						rulesFile = fileChooser.getSelectedFile();
-						GUI.getInstance().getRulesPath().setText(rulesFile.getPath());
+						//rulesFile = fileChooser.getSelectedFile();
+						
+						rulesFile = new File("rules.cf");
+						//GUI.getInstance().getRulesPath().setText(rulesFile.getPath());
 						try {
 							rf = new ReadRules(GUI.getInstance());
+							
 							rf.read(true, rulesFile);
+							
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
 							// e1.printStackTrace();
@@ -294,6 +301,7 @@ public class GUI {
 		buttonsPanelAuto.add(avQualidadeAuto);
 
 		JButton guardarAuto = new JButton("Guardar");
+		guardarAuto.addActionListener(new ListenerForGuardarAutomatico(this));
 		guardarAuto.setPreferredSize(new Dimension(120, 30));
 		buttonsPanelAuto.add(guardarAuto);
 

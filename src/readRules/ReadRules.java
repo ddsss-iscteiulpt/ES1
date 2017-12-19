@@ -71,8 +71,10 @@ public class ReadRules {
 						peso = 0;
 						line = sc.next();
 						
+						String[] divisao = line.split("	");
+						
 						//regras.put(line, Double.toString(peso));
-						String s = line;
+						String s = divisao[0];
 						String pesos = Double.toString(peso);
 						// System.out.println(line + " " + peso);
 						g.getLista().addElement(s);
