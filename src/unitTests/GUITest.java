@@ -12,6 +12,7 @@ public class GUITest {
 
 	@Test
 	public void testGetRf() {
+		gui.getRf();
 	}
 
 	@Test
@@ -47,6 +48,7 @@ public class GUITest {
 
 	@Test
 	public void testGetFpMan() {
+		gui.getFpMan();
 	}
 
 	@Test
