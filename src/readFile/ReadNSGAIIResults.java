@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
@@ -26,12 +27,12 @@ import antiSpamFilter.GUI;
 
 public class ReadNSGAIIResults {
 
-	private File file, file1;
 	private File[] files;
 	private Queue<String> pesos = new LinkedList<>();
 	private GUI g;
-	private String FP;
+	private int FP;
 	private int pos;
+	private HashMap<Integer,String> fps  = new HashMap<>();
 	private ArrayList<String> aux = new ArrayList<>();
 
 	public ReadNSGAIIResults(){}
@@ -70,18 +71,26 @@ public class ReadNSGAIIResults {
 		String[] columns = line.split(" ");
 //		ArrayList<String> aux = new ArrayList<>();
 		aux.add(columns[1]);
+		fps.put(0,columns[0]);
+		int i = 1;
 		while((line = br.readLine()) != null) {
 			System.out.println(line);
 			columns = line.split(" ");
 			aux.add(columns[1]);
+			fps.put(i, columns[0]);
+			i++;
 		}
 		
-		br.close();
 		pos = aux.indexOf(Collections.min(aux));
+		String fp = fps.get(pos);
+		GUI.getInstance().getFpAuto().setText(fp); 
+		br.close();
+		//
+		
 		System.out.println(aux +"\n "+pos);
 		extractPesos(pos);
-		
-		GUI.getInstance().getFnAuto().setText(Collections.min(aux));
+		String fn = Collections.min(aux);
+		GUI.getInstance().getFnAuto().setText(fn);
 		
 	}
 

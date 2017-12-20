@@ -28,6 +28,7 @@ import javax.swing.text.Document;
 import javax.swing.text.Element;
 
 import org.apache.commons.lang3.SystemUtils;
+
 import readRules.ReadRules;
 /**
  * GUI.java- esta classe cria a interfaceGrafica
@@ -38,6 +39,8 @@ public class GUI {
 
 	private JFrame frame;
 	private File rulesFile;
+	private File hamFile;
+	private File spamFile;
 	private ReadRules rf;
 
 	public ReadRules getRf() {
@@ -113,15 +116,16 @@ public class GUI {
 																					// existir
 		pathPanel.add(rulesPath);
 
-		spamPath = new JTextField();
-		spamPath.setFont(new Font("Arial", Font.PLAIN, 16));
-		spamPath.setPreferredSize(new Dimension(500, 30));
-		pathPanel.add(spamPath);
 
 		hamPath = new JTextField();
 		hamPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		hamPath.setPreferredSize(new Dimension(500, 30));
 		pathPanel.add(hamPath);
+		
+		spamPath = new JTextField();
+		spamPath.setFont(new Font("Arial", Font.PLAIN, 16));
+		spamPath.setPreferredSize(new Dimension(500, 30));
+		pathPanel.add(spamPath);
 
 		JPanel searchPanel = new JPanel();
 		searchPanel.setLayout(new GridLayout(3, 1));
@@ -165,10 +169,51 @@ public class GUI {
 
 		searchHam = new JButton("Ficheiro Ham");
 		searchHam.setPreferredSize(new Dimension(200, 30));
+		searchHam.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("ola");
+				JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+				int returnValue = fileChooser.showOpenDialog(null);
+				if (returnValue == JFileChooser.APPROVE_OPTION) {
+					if (fileChooser.getSelectedFile().isFile()) {
+						hamFile = fileChooser.getSelectedFile();
+						hamPath.setText(hamFile.getPath());
+
+					}
+
+				}
+
+			}
+
+		});
 		searchPanel.add(searchHam);
 
 		searchSpam = new JButton("Ficheiro Spam");
 		searchSpam.setPreferredSize(new Dimension(200, 30));
+		searchSpam.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+				fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+				int returnValue = fileChooser.showOpenDialog(null);
+				if (returnValue == JFileChooser.APPROVE_OPTION) {
+					if (fileChooser.getSelectedFile().isFile()) {
+						spamFile = fileChooser.getSelectedFile();
+						spamPath.setText(spamFile.getPath());
+
+					}
+
+				}
+
+			}
+
+		});
 		searchPanel.add(searchSpam);
 
 		selectFiles.add(pathPanel);
@@ -365,7 +410,6 @@ public class GUI {
 		return fn;
 	}
 
-	
 
 	public DefaultListModel<String> getLista() {
 		return lista;
@@ -385,6 +429,14 @@ public class GUI {
 
 	public File getRulesFile() {
 		return rulesFile;
+	}
+	
+	public File getHamFile() {
+		return hamFile;
+	}
+
+	public File getSpamFile() {
+		return spamFile;
 	}
 
 }

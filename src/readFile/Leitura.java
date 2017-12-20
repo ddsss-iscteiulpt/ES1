@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
+import antiSpamFilter.GUI;
 import readRules.*;
 
 /**  
@@ -40,7 +41,7 @@ public class Leitura {
 	 */
 	
 	public Leitura(ReadRules readFiles) throws IOException {
-
+		files = new File[2];
 		this.readFiles = readFiles;
 		//lerFicheirosHAMSPAM();
 	}
@@ -51,19 +52,8 @@ public class Leitura {
 	 */
 	public void lerFicheirosHAMSPAM() throws IOException {
 
-		files = new File("Ficheiros").listFiles(new FileFilter() {
-
-			@Override
-			public boolean accept(File f) {
-
-				// se retornar verdadeiro, f e incluido
-
-				if (f.getName().endsWith("txt"))
-					return true;
-
-				return false;
-			}
-		});
+		files[0] = GUI.getInstance().getHamFile();
+		files[1] = GUI.getInstance().getSpamFile();
 
 		//System.out.println("tamanho do files: " + files.length);
 
