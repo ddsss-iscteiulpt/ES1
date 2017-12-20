@@ -9,9 +9,12 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.nio.Buffer;
 import java.util.Scanner;
+import java.util.Map.Entry;
 
 import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
+
+import readRules.ReadRules;
 
 public class ListenerForGuardar implements ActionListener {
 
@@ -30,51 +33,38 @@ public class ListenerForGuardar implements ActionListener {
 		// System.out.println("Estou a carregar no botao!!");
 		if (!gui.getFnMan().getText().equals("") && !gui.getFpMan().getText().equals("")) {
 			System.out.println("podes guardar valores");
-			System.out.println("cucu " + gui.getWeightList().getText().length());
-			
-			File filePesos = new File("pesos.txt");
-			
+			// System.out.println("cucu " + gui.getWeightList().getText().length());
 
-			PrintWriter printPesos;
+			int contador = 0;
+			File rulesFile = gui.getRulesFile();
+
 			try {
-				printPesos = new PrintWriter("pesos.txt");
-				printPesos.println(gui.getWeightList().getText());
-				printPesos.close();
+				// Scanner rulesScanner = new Scanner(rulesFile);
+				PrintWriter printRules = new PrintWriter(rulesFile);
+				// while (rulesScanner.hasNextLine()) {
+
+				// for (Entry<String, String> entry : gui.getRf().getRegras().entrySet()) {
+
+				for (int i = 0; i < gui.getRf().getRegras().size(); i++) {
+					String ola = gui.getRf().getRegras().get(gui.getLista().getElementAt(contador));
+
+					printRules.println(gui.getLista().getElementAt(contador) + "	" + ola);
+					contador++;
+				}
+
+				// }
+				JOptionPane.showMessageDialog(gui.getFrame(), "Guardado em : rules.cf");
+				// rulesScanner.close();
+				printRules.close();
 
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			Scanner rulesCopia;
-			Scanner rulesPesos;
-			try {
+		} else
 
-				
-				File fileRulesCopia = new File("rulesCopia.cf");
-				PrintWriter print3 = new PrintWriter("rules.cf");
-
-				rulesCopia = new Scanner(fileRulesCopia);
-				rulesPesos = new Scanner(filePesos);
-
-				while (rulesCopia.hasNextLine()) {
-
-					print3.println(rulesCopia.nextLine() + "	" + rulesPesos.nextLine());
-
-				}
-				JOptionPane.showMessageDialog(gui.getFrame(), "Guardado em : rules.cf");
-				// System.out.println("line: " + line);
-				rulesCopia.close();
-				rulesPesos.close();
-				print3.close();
-
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-		} else {
-			// System.out.println("Atenção primeiro tens de Av. qualidade!! ");
+		{
 			JOptionPane.showMessageDialog(gui.getFrame(), "Atenção primeiro tens de Av. qualidade!!");
 		}
 

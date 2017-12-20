@@ -41,6 +41,8 @@ public class ReadRules {
 	File file; // Path deve ser diferente
 
 	// Ficheiros rules.cf fica na mesma package que as classes
+	
+	
 
 	FileReader reader = null;
 
@@ -69,11 +71,12 @@ public class ReadRules {
 						i++;
 //						peso = (rangeMin + (rangeMax - rangeMin) * rand.nextDouble());
 						peso = 0;
-						line = sc.next();
-						
+						line = sc.nextLine();
+						//System.out.println("linha: " + line);
 						String[] divisao = line.split("	");
 						
 						//regras.put(line, Double.toString(peso));
+						//System.out.println("divisao no read rules: " + divisao[0]);
 						String s = divisao[0];
 						String pesos = Double.toString(peso);
 						// System.out.println(line + " " + peso);
@@ -84,8 +87,9 @@ public class ReadRules {
 					}else{
 						while (sc.hasNextLine()) {
 							i++;
-							line = sc.next();
-							nomeRegras.add(line);                                 //array com o nome das regras
+							line = sc.nextLine();
+							String[] divisao = line.split("	");
+							nomeRegras.add(divisao[0]);                                 //array com o nome das regras
 							// 							System.out.println(line + " " + peso);
 							//							g.getLista().addElement(s);
 							//							g.getWeightList().append(pesos);

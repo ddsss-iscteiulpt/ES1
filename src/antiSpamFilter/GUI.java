@@ -141,10 +141,9 @@ public class GUI {
 				int returnValue = fileChooser.showOpenDialog(null);
 				if (returnValue == JFileChooser.APPROVE_OPTION) {
 					if (fileChooser.getSelectedFile().isFile()) {
-						//rulesFile = fileChooser.getSelectedFile();
+						rulesFile = fileChooser.getSelectedFile();
 						
-						rulesFile = new File("rules.cf");
-						//GUI.getInstance().getRulesPath().setText(rulesFile.getPath());
+						GUI.getInstance().getRulesPath().setText(rulesFile.getPath());
 						try {
 							rf = new ReadRules(GUI.getInstance());
 							
