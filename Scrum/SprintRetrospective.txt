@@ -1,0 +1,44 @@
+﻿Sprint Retrospective
+
+Primeiro Sprint:
+7 de Novembro de 2017 
+
+
+- Foi implementada a parte grafica em Java com sucesso;
+- Foi implementado um leitor para os ficheiros rules.cf com sucesso;
+- Foi gerado um vetor aleatorio de atribuicao para as regras do rules.cf com sucesso;
+
+Aspetos a melhorar e a incluir no proximo commit:
+
+- Colocar o caminho do ficheiro no GUI em vez de ser no proprio codigo;
+- Fazer com que ficheiro lido apareca no GUI;
+- Substituir regras dos ficheiros ham e spam pelos pesos gerados aleatoriamente;
+
+
+
+Segundo Sprint 
+4 de Dezembro de 2017
+
+- Foram alteradas as regras dos ficheiros ham.log e spam.log pelos pesos gerados aleatoriamente;
+- Tornou-se possivel colocar o caminho do ficheiro rules.cf no proprio GUI;
+- Regras e Pesos ja aparecem no GUI (parte manual);
+- Configurou-se botao Avaliar Qualidade;
+
+
+
+Aspetos a melhorar e a incluir no proximo commit:
+
+- Interface grafica com JTextArea(pesos) e JList(regras) sincronizadas;
+- Tornar possivel a alteracao dos pesos na parte manual ;
+- Tornar possivel que o utilizador gere uma configuracao automatica;
+- Permitir que o utilizador guarde a configuracao ideal;
+
+
+Terceiro Sprint
+21 de Dezembro de 2017
+
+- JList e JText Area encontram-se sincronizadas (scroll sincronizado)
+- Tornou-se possivel a alteracao dos pesos na parte manual e consequente alteracao dos valores de FP e FN;
+- Tornou-se possivel que o utilizador gere uma configuracao automatica atraves do algoritmo NSGA-II;
+- Utilizador ja pode guardar configuracoes ideais no ficheiro rules.cf;
+- Foi implementada no GUI uma pesquisa de ficheiros para configuração dos caminhos para os ficheiros rules.cf, ham.log e spam.log;
