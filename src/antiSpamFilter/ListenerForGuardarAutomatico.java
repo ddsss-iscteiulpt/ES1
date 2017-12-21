@@ -11,6 +11,13 @@ import javax.swing.JOptionPane;
 
 import readRules.ReadRules;
 
+/**
+ * 
+ * ListenerForGuardaAutomatico - esta classe é chamada sempre que o utilizador carrega no botão 
+ * guardar para o caso automatico
+ * o objetivo é atualizar o ficheiro rules com os dados da interface grafica
+ *
+ */
 public class ListenerForGuardarAutomatico implements ActionListener {
 
 	private GUI gui;
@@ -20,6 +27,11 @@ public class ListenerForGuardarAutomatico implements ActionListener {
 		this.gui = gui;
 	}
 
+	/**
+	 * Este metodo é acionado quando o botão Guardar é carregado 
+	 * Percorre o hash map e para cada peso adiciona a regra no ficheiro rules tal como está na 
+	 * interface gráfica
+	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		//System.out.println("Carreguei no botao do automatico");
