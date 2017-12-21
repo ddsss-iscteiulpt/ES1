@@ -23,9 +23,9 @@ public class NSGAIITest {
 			System.out.println(fnString);
 			double fn = Double.parseDouble(fnString);
 			if(i==0){
-				i=indexMin;min=fn;
+				indexMin=i;min=fn;
 			}else if(fn<min){
-				min = fn;i=indexMin;
+				min = fn;indexMin=i;
 			}	
 		}
 		

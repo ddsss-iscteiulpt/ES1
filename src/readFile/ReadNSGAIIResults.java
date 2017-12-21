@@ -35,7 +35,21 @@ public class ReadNSGAIIResults {
 	private HashMap<Integer,String> fps  = new HashMap<>();
 	private ArrayList<String> aux = new ArrayList<>();
 
-	public ReadNSGAIIResults(){}
+	public ReadNSGAIIResults(){
+		files = new File("experimentBaseDirectory/referenceFronts").listFiles(new FileFilter() {
+
+			@Override
+			public boolean accept(File f) {
+
+				// se retornar verdadeiro, f e incluido
+
+				if (f.getName().endsWith("rs")||f.getName().endsWith("rf")){
+					return true;
+				}else
+					return false;
+			}
+		});
+	}
 	
 	public ReadNSGAIIResults(GUI g){
 		this.g=g;
@@ -119,7 +133,7 @@ public class ReadNSGAIIResults {
 					String peso = columns[j];
 					System.out.println(peso);
 					pesos.add(peso);
-					g.getWeightListAuto().append(peso + "\n");
+					GUI.getInstance().getWeightListAuto().append(peso + "\n");
 				}
 				break;
 			}else{
