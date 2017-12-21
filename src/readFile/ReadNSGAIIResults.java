@@ -51,24 +51,7 @@ public class ReadNSGAIIResults {
 		});
 	}
 	
-	public ReadNSGAIIResults(GUI g){
-		this.g=g;
-		files = new File("experimentBaseDirectory/referenceFronts").listFiles(new FileFilter() {
-
-			@Override
-			public boolean accept(File f) {
-
-				// se retornar verdadeiro, f e incluido
-
-				if (f.getName().endsWith("rs")||f.getName().endsWith("rf")){
-					return true;
-				}else
-					return false;
-			}
-		});
-		
-	}
-
+	
 	/**
 	 * função responsável pela leitura do ficheiro AntiSpamFilterProblem.NSGAII.rf;
 	 * Este ficheiro contém uma culuna com FPs e FNs calculados com o alghorithm NSGAII;

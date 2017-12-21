@@ -74,10 +74,7 @@ public class Leitura {
 
 					String[] divisao = line.split("	");
 
-					for(int j = 0; j< divisao.length; j++){
-						//System.out.println("vamos ver o que esta na divisao " + j + " " + divisao[j]);
-					}
-					//String[] divisao = s.nextLine().split("	");
+					
 
 					calcularFPFN(divisao, i);
 

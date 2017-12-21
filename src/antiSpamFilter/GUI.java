@@ -40,12 +40,13 @@ public class GUI {
 	private JFrame frame;
 	private File rulesFile;
 	private File hamFile;
+	
+	
+	
 	private File spamFile;
 	private ReadRules rf;
 
-	public ReadRules getRf() {
-		return rf;
-	}
+	
 
 	private JList<String> rulesList;
 	private JTextArea weightList;
@@ -100,17 +101,6 @@ public class GUI {
 	
 	
 	
-	public ReadRules getRf_automatico() {
-		return rf_automatico;
-	}
-
-	public JList<String> getRulesListAuto() {
-		return rulesListAuto;
-	}
-
-	public void setRulesListAuto(JList<String> rulesListAuto) {
-		this.rulesListAuto = rulesListAuto;
-	}
 
 	/**
 	 * este metodo chama outros metodos para criar a interface grafica
@@ -136,9 +126,6 @@ public class GUI {
 
 		//rulesPath.setText("/Users/nuno/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
 																					// linha
-																					// n�o
-																					// �
-																					// suposto
 																					// existir
 		pathPanel.add(rulesPath);
 
@@ -316,25 +303,8 @@ public class GUI {
 
 
 	}
-
-	public JButton getAvQualidadeMan() {
-		return avQualidade;
-	}
-
-	public JTextField getFpMan() {
-		return fp;
-	}
-
-	public JTextField getFnMan() {
-		return fn;
-	}
-
-	public JTextField getRulesPath() {
-		return rulesPath;
-	}
-	public JButton getGuardar() {
-		return guardar;
-	}
+	
+	
 	public void addAutoConfig() {
 		listaAuto = new DefaultListModel<String>();
 
@@ -405,6 +375,31 @@ public class GUI {
 
 	}
 	
+	
+	//Getters e Setters
+	
+	public ReadRules getRf() {
+		return rf;
+	}
+	public JButton getAvQualidadeMan() {
+		return avQualidade;
+	}
+
+	public JTextField getFpMan() {
+		return fp;
+	}
+
+	public JTextField getFnMan() {
+		return fn;
+	}
+
+	public JTextField getRulesPath() {
+		return rulesPath;
+	}
+	public JButton getGuardar() {
+		return guardar;
+	}
+	
 	public JTextField getFpAuto() {
 		return fpAuto;
 	}
@@ -436,6 +431,15 @@ public class GUI {
 		return fn;
 	}
 
+	public JButton getSearchHam() {
+		return searchHam;
+	}
+
+	public JButton getSearchSpam() {
+		return searchSpam;
+	}
+
+
 
 	public DefaultListModel<String> getLista() {
 		return lista;
@@ -463,6 +467,17 @@ public class GUI {
 
 	public File getSpamFile() {
 		return spamFile;
+	}
+	public ReadRules getRf_automatico() {
+		return rf_automatico;
+	}
+
+	public JList<String> getRulesListAuto() {
+		return rulesListAuto;
+	}
+
+	public void setRulesListAuto(JList<String> rulesListAuto) {
+		this.rulesListAuto = rulesListAuto;
 	}
 
 }

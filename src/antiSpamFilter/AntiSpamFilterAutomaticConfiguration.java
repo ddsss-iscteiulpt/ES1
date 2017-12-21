@@ -40,7 +40,7 @@ public class AntiSpamFilterAutomaticConfiguration {
 					rf = new ReadRules(GUI.getInstance());
 					rf.read(false, GUI.getInstance().getRulesFile());
 					init();
-					ReadNSGAIIResults rr = new ReadNSGAIIResults(GUI.getInstance());
+					ReadNSGAIIResults rr = new ReadNSGAIIResults();
 					rr.read();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
