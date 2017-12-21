@@ -16,6 +16,13 @@ import javax.swing.SwingWorker;
 
 import readRules.ReadRules;
 
+/**
+ * 
+ * ListenerForGuarda - esta classe é chamada sempre que o utilizador carrega no botão guardar para o caso manual
+ * o objetivo é atualizar o ficheiro rules com os dados da interface grafica
+ *
+ */
+
 public class ListenerForGuardar implements ActionListener {
 
 	private GUI gui;
@@ -25,25 +32,22 @@ public class ListenerForGuardar implements ActionListener {
 	}
 
 	/**
-	 * Este metodo é acionado quando o botão Guardar é carregado Primeiro é criado
-	 * um ficheiro rules2 com os pesos associados a cada regrass
+	 * Este metodo é acionado quando o botão Guardar é carregado 
+	 * Percorre o hash map e para cada peso adiciona a regra no ficheiro rules tal como está na 
+	 * interface gráfica
 	 */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// System.out.println("Estou a carregar no botao!!");
 		if (!gui.getFnMan().getText().equals("") && !gui.getFpMan().getText().equals("")) {
 			System.out.println("podes guardar valores");
-			// System.out.println("cucu " + gui.getWeightList().getText().length());
 
 			int contador = 0;
 			File rulesFile = gui.getRulesFile();
 
 			try {
-				// Scanner rulesScanner = new Scanner(rulesFile);
-				PrintWriter printRules = new PrintWriter(rulesFile);
-				// while (rulesScanner.hasNextLine()) {
 
-				// for (Entry<String, String> entry : gui.getRf().getRegras().entrySet()) {
+				PrintWriter printRules = new PrintWriter(rulesFile);
 
 				for (int i = 0; i < gui.getRf().getRegras().size(); i++) {
 					String ola = gui.getRf().getRegras().get(gui.getLista().getElementAt(contador));
@@ -52,9 +56,8 @@ public class ListenerForGuardar implements ActionListener {
 					contador++;
 				}
 
-				// }
 				JOptionPane.showMessageDialog(gui.getFrame(), "Guardado em : rules.cf");
-				// rulesScanner.close();
+
 				printRules.close();
 
 			} catch (FileNotFoundException e) {

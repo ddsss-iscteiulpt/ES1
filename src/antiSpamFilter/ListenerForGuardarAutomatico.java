@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import readRules.ReadRules;
+
 public class ListenerForGuardarAutomatico implements ActionListener {
 
 	private GUI gui;
@@ -25,29 +27,28 @@ public class ListenerForGuardarAutomatico implements ActionListener {
 		if(!gui.getFnAuto().getText().equals("") && !gui.getFpAuto().getText().equals("")) {
 
 			System.out.println("podes guardar valores");
-			// System.out.println("cucu " + gui.getWeightList().getText().length());
+			
 
 			int contador = 0;
 			File rulesFile = gui.getRulesFile();
 
+			
 			try {
-				// Scanner rulesScanner = new Scanner(rulesFile);
-				PrintWriter printRules = new PrintWriter("pesos.txt");
-				// while (rulesScanner.hasNextLine()) {
+				
+				PrintWriter printRules = new PrintWriter(rulesFile);
+			
 
-				// for (Entry<String, String> entry : gui.getRf().getRegras().entrySet()) {
-
-				for (int i = 0; i < gui.getRf().getRegras().size(); i++) {
-					String ola = gui.getRf().getRegras().get(gui.getListaAuto().getElementAt(contador));
+				for (int i = 0; i < gui.getRf_automatico().getRegras().size(); i++) {
+					String ola = gui.getRf_automatico().getRegras().get(gui.getListaAuto().getElementAt(contador));
 					System.out.println(contador + " ola: " + ola);
 
 					printRules.println(gui.getListaAuto().getElementAt(contador) + "	" + ola);
 					contador++;
 				}
 
-				// }
+			
 				JOptionPane.showMessageDialog(gui.getFrame(), "Guardado em : rules.cf");
-				// rulesScanner.close();
+				
 				printRules.close();
 
 			} catch (FileNotFoundException e) {

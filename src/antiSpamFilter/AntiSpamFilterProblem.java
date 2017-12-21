@@ -13,7 +13,7 @@ import readRules.ReadRules;
 
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 
-	private ReadRules rf = new ReadRules(GUI.getInstance());
+	//private ReadRules rf = new ReadRules(GUI.getInstance());
 	
 	  public AntiSpamFilterProblem() {
 	    // 10 variables (anti-spam filter rules) by default 
@@ -44,13 +44,14 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 			double[] fx = new double[getNumberOfObjectives()];
 			double[] x = new double[getNumberOfVariables()];
 			try {
-				rf.read(false,file);
+				GUI.getInstance().getRf_automatico().read(false,file);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			rf.getRegras();
-			rf.getNomeRegras();
+			
+			GUI.getInstance().getRf_automatico().getRegras();
+			GUI.getInstance().getRf_automatico().getNomeRegras();
 			
 			//System.out.println("Numero de Regras " + rf.getNomeRegras().size() + 
 			//		" Numero de variáveis: " + solution.getNumberOfVariables());
@@ -58,13 +59,13 @@ public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 			for (int i = 0; i < solution.getNumberOfVariables(); i++){
 				x[i] = solution.getVariableValue(i);
 				String peso = solution.getVariableValue(i).toString();
-				String name = rf.getNomeRegras().poll();
-				rf.getRegras().put(name, peso);
+				String name = GUI.getInstance().getRf_automatico().getNomeRegras().poll();
+				GUI.getInstance().getRf_automatico().getRegras().put(name, peso);
 //				//System.out.println(name +" "+peso+	 "\n");
 			}
 
 			try {
-				Leitura l = new Leitura(rf);
+				Leitura l = new Leitura(GUI.getInstance().getRf_automatico());
 				l.lerFicheirosHAMSPAM();
 				fx[0]=l.getFP();
 				fx[1]=l.getFN();

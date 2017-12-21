@@ -32,7 +32,7 @@ import org.apache.commons.lang3.SystemUtils;
 import readRules.ReadRules;
 /**
  * GUI.java- esta classe cria a interfaceGrafica
- * @author Catarina
+ * e especidfica todas as funcionalidades desta
  *
  */
 public class GUI {
@@ -71,6 +71,8 @@ public class GUI {
 	private JTextField fnAuto;
 	public static final GUI INSTANCE = new GUI();
 	
+	private ReadRules rf_automatico = new ReadRules(this);
+	
 	private JList<String> rulesListAuto;
 
 	public static GUI getInstance() {
@@ -81,6 +83,10 @@ public class GUI {
 		return frame;
 	}
 
+	/**
+	 * Constructor
+	 * 
+	 */
 	public GUI() {
 		super();
 		frame = new JFrame();
@@ -94,6 +100,10 @@ public class GUI {
 	
 	
 	
+	public ReadRules getRf_automatico() {
+		return rf_automatico;
+	}
+
 	public JList<String> getRulesListAuto() {
 		return rulesListAuto;
 	}
@@ -102,6 +112,9 @@ public class GUI {
 		this.rulesListAuto = rulesListAuto;
 	}
 
+	/**
+	 * este metodo chama outros metodos para criar a interface grafica
+	 */
 	public void buildGui() {
 
 		addPathPanel();
@@ -109,7 +122,8 @@ public class GUI {
 		addAutoConfig();
 
 	}
-
+	 
+	
 	public void addPathPanel() {
 		JPanel selectFiles = new JPanel();
 
