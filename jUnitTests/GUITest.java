@@ -174,6 +174,6 @@ public class GUITest {
 	public void testGetSearchSpam() {
 	gui.getSearchSpam().doClick();
 	
-	}
+	} 
 
 }

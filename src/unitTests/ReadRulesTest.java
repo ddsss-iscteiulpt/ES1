@@ -22,7 +22,7 @@ public class ReadRulesTest {
 		
 
 		
-	}
+	} 
 
 	@Test
 	public void testRead() throws IOException {

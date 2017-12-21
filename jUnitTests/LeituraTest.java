@@ -30,7 +30,7 @@ public class LeituraTest {
 		
 		assertEquals(0, l.getFP());
 	}
-
+ 
 	@Test
 	public void testGetFN() throws IOException {
 		GUI gui = new GUI();

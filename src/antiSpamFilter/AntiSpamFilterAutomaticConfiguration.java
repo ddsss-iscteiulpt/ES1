@@ -42,7 +42,7 @@ public class AntiSpamFilterAutomaticConfiguration {
 					init();
 					ReadNSGAIIResults rr = new ReadNSGAIIResults();
 					rr.read();
-				} catch (IOException e) {
+				} catch (IOException e) { 
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

@@ -138,4 +138,4 @@ public class ReadNSGAIIResults {
 	public ArrayList<String> getAux(){
 		return aux;
 	}
-}
+} 

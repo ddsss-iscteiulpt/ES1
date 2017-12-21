@@ -18,4 +18,4 @@ public class AntSpamFilterAutomaticConfigurationTest {
 	public void testConfigureAlgorithmList() {
 	}
 
-}
+} 

@@ -16,7 +16,7 @@ public class AntiSpamFilterManualConfigurationTest {
 		
 		
 		GUI.getInstance().getAvQualidadeMan().doClick();
-	
+	 
 		
 	
 	}

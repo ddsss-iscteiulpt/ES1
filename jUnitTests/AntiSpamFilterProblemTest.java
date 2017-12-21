@@ -17,5 +17,5 @@ public class AntiSpamFilterProblemTest {
 	@Test
 	public void testEvaluate() {
 	}
-
+  
 }
