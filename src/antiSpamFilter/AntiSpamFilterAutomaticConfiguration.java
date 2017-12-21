@@ -42,6 +42,7 @@ public class AntiSpamFilterAutomaticConfiguration {
 					init();
 					ReadNSGAIIResults rr = new ReadNSGAIIResults();
 					rr.read();
+					rr.do_boxplot();
 				} catch (IOException e) { 
 					// TODO Auto-generated catch block
 					e.printStackTrace();

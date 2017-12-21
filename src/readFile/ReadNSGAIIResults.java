@@ -71,7 +71,6 @@ public class ReadNSGAIIResults {
 		fps.put(0,columns[0]);
 		int i = 1;
 		while((line = br.readLine()) != null) {
-			System.out.println(line);
 			columns = line.split(" ");
 			aux.add(columns[1]);
 			fps.put(i, columns[0]);
@@ -84,7 +83,6 @@ public class ReadNSGAIIResults {
 		br.close();
 		//
 		
-		System.out.println(aux +"\n "+pos);
 		extractPesos(pos);
 		String fn = Collections.min(aux);
 		GUI.getInstance().getFnAuto().setText(fn);
@@ -114,13 +112,11 @@ public class ReadNSGAIIResults {
 				columns = line.split(" ");
 				for(int j=0; j<columns.length; j++){
 					String peso = columns[j];
-					System.out.println(peso);
 					pesos.add(peso);
 					GUI.getInstance().getWeightListAuto().append(peso + "\n");
 				}
 				break;
 			}else{
-				System.out.println("next");
 				i++;
 			}
 		}	
@@ -137,5 +133,37 @@ public class ReadNSGAIIResults {
 	
 	public ArrayList<String> getAux(){
 		return aux;
+	}
+	
+	public void do_boxplot() {
+
+		String[] params = new String[2];
+		String[] envp = new String[1];
+
+		params[0] = "C:\\Program Files\\R\\R-3.4.3\\bin\\x64\\Rscript.exe";
+		params[1] = "C:\\Users\\nuno\\git\\ES1-2017-METIA1-41(2)\\experimentBaseDirectory\\AntiSpamStudy\\R\\HV.Boxplot.R";
+		envp[0] = "Path = C:\\Program Files\\R\\R-3.4.3\\bin\\x64";
+
+		try {
+			Process p = Runtime.getRuntime().exec(params,envp, new File("C:\\Users\\nuno\\git\\ES1-2017-METIA1-41(2)\\experimentBaseDirectory\\AntiSpamStudy\\R"));
+			System.out.println("Ficheiro esp done ");
+		} catch (IOException e) {
+			System.out.println("Erro a gerar os gráficos R");
+		}
+
+
+		String[] paramsLatex = new String[2];
+		String[] envpLatex = new String[1];
+
+		paramsLatex[0] = "C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64\\pdflatex.exe";
+		paramsLatex[1] = "C:\\Users\\nuno\\git\\ES1-2017-METIA1-41(2)\\experimentBaseDirectory\\AntiSpamStudy\\latex\\AntiSpamStudy.tex";
+		envpLatex[0] = "Path = C:\\Program Files\\MiKTeX 2.9\\miktex\\bin\\x64";
+
+		try {
+			Process p = Runtime.getRuntime().exec(paramsLatex,envpLatex, new File("C:\\Users\\nuno\\git\\ES1-2017-METIA1-41(2)\\experimentBaseDirectory\\AntiSpamStudy\\latex"));
+			System.out.println("DONEEEEEEEEEEEEEEEEEEEEEEE");
+		} catch (IOException e) {
+			System.out.println("Erro a gerar os gráficos latex");
+		}
 	}
 } 
