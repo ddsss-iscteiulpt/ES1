@@ -12,7 +12,7 @@ import readRules.ReadRules;
 
 public class ReadRulesTest {
 
-	File file = new File("/Users/nanix/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
+	File file = new File("/Users/Catarina/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
 	
 	GUI g = new GUI();
 	ReadRules r = new ReadRules(g);

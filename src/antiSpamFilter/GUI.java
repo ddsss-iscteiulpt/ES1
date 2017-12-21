@@ -70,6 +70,8 @@ public class GUI {
 	private JTextField fpAuto;
 	private JTextField fnAuto;
 	public static final GUI INSTANCE = new GUI();
+	
+	private JList<String> rulesListAuto;
 
 	public static GUI getInstance() {
 		return INSTANCE;
@@ -90,6 +92,16 @@ public class GUI {
 		frame.setResizable(false);
 	}
 	
+	
+	
+	public JList<String> getRulesListAuto() {
+		return rulesListAuto;
+	}
+
+	public void setRulesListAuto(JList<String> rulesListAuto) {
+		this.rulesListAuto = rulesListAuto;
+	}
+
 	public void buildGui() {
 
 		addPathPanel();
@@ -317,7 +329,7 @@ public class GUI {
 		JPanel rulesPanelAuto = new JPanel();
 		rulesPanelAuto.setLayout(new GridLayout(1, 2));
 
-		JList<String> rulesListAuto = new JList<String>(listaAuto);
+		rulesListAuto = new JList<String>(listaAuto);
 
 		weightListAuto = new JTextArea();
 		weightListAuto.setEditable(false);
