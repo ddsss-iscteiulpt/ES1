@@ -118,33 +118,15 @@ public class GUI {
 		JPanel selectFiles = new JPanel();
 
 		JPanel pathPanel = new JPanel();
-		pathPanel.setLayout(new GridLayout(3, 1));
+		pathPanel.setLayout(new GridLayout(3, 2));
 
 		rulesPath = new JTextField();
 		rulesPath.setFont(new Font("Arial", Font.PLAIN, 16));
 		rulesPath.setPreferredSize(new Dimension(500, 30));
-
-		//rulesPath.setText("/Users/nuno/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf"); // esta
-																					// linha
-																					// existir
 		pathPanel.add(rulesPath);
-
-
-		hamPath = new JTextField();
-		hamPath.setFont(new Font("Arial", Font.PLAIN, 16));
-		hamPath.setPreferredSize(new Dimension(500, 30));
-		pathPanel.add(hamPath);
 		
-		spamPath = new JTextField();
-		spamPath.setFont(new Font("Arial", Font.PLAIN, 16));
-		spamPath.setPreferredSize(new Dimension(500, 30));
-		pathPanel.add(spamPath);
-
-		JPanel searchPanel = new JPanel();
-		searchPanel.setLayout(new GridLayout(3, 1));
-
 		searchRules = new JButton("Ficheiro de Regras");
-		searchRules.setPreferredSize(new Dimension(200, 30));
+		searchRules.setPreferredSize(new Dimension(100, 30));
 		searchRules.addActionListener(new ActionListener() {
 
 			@Override
@@ -178,10 +160,16 @@ public class GUI {
 			}
 
 		});
-		searchPanel.add(searchRules);
+		pathPanel.add(searchRules);
 
+
+		hamPath = new JTextField();
+		hamPath.setFont(new Font("Arial", Font.PLAIN, 16));
+		hamPath.setPreferredSize(new Dimension(500, 30));
+		pathPanel.add(hamPath);
+		
 		searchHam = new JButton("Ficheiro Ham");
-		searchHam.setPreferredSize(new Dimension(200, 30));
+		searchHam.setPreferredSize(new Dimension(100, 30));
 		searchHam.addActionListener(new ActionListener() {
 
 			@Override
@@ -203,10 +191,17 @@ public class GUI {
 			}
 
 		});
-		searchPanel.add(searchHam);
+		pathPanel.add(searchHam);
+		
+		spamPath = new JTextField();
+		spamPath.setFont(new Font("Arial", Font.PLAIN, 16));
+		spamPath.setPreferredSize(new Dimension(500, 30));
+		pathPanel.add(spamPath);
+
+
 
 		searchSpam = new JButton("Ficheiro Spam");
-		searchSpam.setPreferredSize(new Dimension(200, 30));
+		searchSpam.setPreferredSize(new Dimension(100, 30));
 		searchSpam.addActionListener(new ActionListener() {
 
 			@Override
@@ -227,19 +222,35 @@ public class GUI {
 			}
 
 		});
-		searchPanel.add(searchSpam);
+		pathPanel.add(searchSpam);
 
 		selectFiles.add(pathPanel);
-		selectFiles.add(searchPanel);
 
 		frame.add(selectFiles, BorderLayout.NORTH);
 
 	}
 
+	public JTextField getHamPath() {
+		return hamPath;
+	}
+
+	public void setHamPath(JTextField hamPath) {
+		this.hamPath = hamPath;
+	}
+
+	public JTextField getSpamPath() {
+		return spamPath;
+	}
+
 	public void addManualConfig() {
+		
 		lista = new DefaultListModel<String>();
 
 		JPanel manualConfig = new JPanel();
+
+		JLabel label = new JLabel("Configuração Manual");
+		label.setPreferredSize(new Dimension(150,20));
+		manualConfig.add(label);
 
 		JPanel rulesPanel = new JPanel();
 		rulesPanel.setLayout(new GridLayout(1, 2));
@@ -303,12 +314,15 @@ public class GUI {
 
 
 	}
-	
-	
+
 	public void addAutoConfig() {
 		listaAuto = new DefaultListModel<String>();
 
 		JPanel autoConfig = new JPanel();
+		
+		JLabel label = new JLabel("Configuração Automática");
+		label.setPreferredSize(new Dimension(150,20));
+		autoConfig.add(label);
 
 		JPanel rulesPanelAuto = new JPanel();
 		rulesPanelAuto.setLayout(new GridLayout(1, 2));
@@ -381,24 +395,6 @@ public class GUI {
 	public ReadRules getRf() {
 		return rf;
 	}
-	public JButton getAvQualidadeMan() {
-		return avQualidade;
-	}
-
-	public JTextField getFpMan() {
-		return fp;
-	}
-
-	public JTextField getFnMan() {
-		return fn;
-	}
-
-	public JTextField getRulesPath() {
-		return rulesPath;
-	}
-	public JButton getGuardar() {
-		return guardar;
-	}
 	
 	public JTextField getFpAuto() {
 		return fpAuto;
@@ -468,6 +464,27 @@ public class GUI {
 	public File getSpamFile() {
 		return spamFile;
 	}
+	
+	public JButton getAvQualidadeMan() {
+		return avQualidade;
+	}
+
+	public JTextField getFpMan() {
+		return fp;
+	}
+
+	public JTextField getFnMan() {
+		return fn;
+	}
+
+	public JTextField getRulesPath() {
+		return rulesPath;
+	}
+	
+	public JButton getGuardar() {
+		return guardar;
+	}
+	
 	public ReadRules getRf_automatico() {
 		return rf_automatico;
 	}
