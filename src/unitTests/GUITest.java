@@ -1,7 +1,5 @@
 package unitTests;
 
-import static org.junit.Assert.*;
-
 import javax.swing.JList;
 
 import org.junit.Test;

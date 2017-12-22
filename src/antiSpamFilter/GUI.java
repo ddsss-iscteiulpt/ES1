@@ -20,14 +20,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
-import javax.swing.text.Document;
-import javax.swing.text.Element;
-
-import org.apache.commons.lang3.SystemUtils;
 
 import readRules.ReadRules;
 /**
@@ -72,7 +66,7 @@ public class GUI {
 	private JTextField fnAuto;
 	public static final GUI INSTANCE = new GUI();
 	
-	private ReadRules rf_automatico = new ReadRules(this);
+	private ReadRules rf_automatico = new ReadRules();
 	
 	private JList<String> rulesListAuto;
 
@@ -144,7 +138,7 @@ public class GUI {
 						
 						GUI.getInstance().getRulesPath().setText(rulesFile.getPath());
 						try {
-							rf = new ReadRules(GUI.getInstance());
+							rf = new ReadRules();
 							
 							rf.read(true, rulesFile);
 							
@@ -285,7 +279,7 @@ public class GUI {
 		buttonsPanel.add(avQualidade);
 
 		guardar = new JButton("Guardar");
-		guardar.addActionListener(new ListenerForGuardar(this));
+		guardar.addActionListener(new ListenerForGuardar());
 		guardar.setPreferredSize(new Dimension(120, 30));
 		buttonsPanel.add(guardar);
 

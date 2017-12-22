@@ -25,7 +25,6 @@ import antiSpamFilter.GUI;
 
 public class ReadRules {
 
-	private GUI g;
 	private double peso = 0.0;
 	private int numLinhas;
 
@@ -41,8 +40,7 @@ public class ReadRules {
 
 	FileReader reader = null;
 
-	public ReadRules(GUI g) {
-		this.g = g;
+	public ReadRules() {
 
 	}
 
@@ -74,9 +72,9 @@ public class ReadRules {
 					String s = divisao[0];
 					String pesos = Double.toString(peso);
 					// System.out.println(line + " " + peso);
-					g.getLista().addElement(s);
-					g.getWeightList().append(pesos);
-					g.getWeightList().append("\n");
+					GUI.getInstance().getLista().addElement(s);
+					GUI.getInstance().getWeightList().append(pesos);
+					GUI.getInstance().getWeightList().append("\n");
 				}
 			} else {
 				while (sc.hasNextLine()) {
@@ -90,7 +88,7 @@ public class ReadRules {
 					// g.getWeightList().append(pesos);
 					// g.getWeightList().append("\n");
 					String s = divisao[0];
-					g.getListaAuto().addElement(s);
+					GUI.getInstance().getListaAuto().addElement(s);
 				}
 
 			}
@@ -100,7 +98,7 @@ public class ReadRules {
 			e.printStackTrace();
 		}
 
-		numLinhas = g.getWeightList().getLineCount();
+		numLinhas = GUI.getInstance().getWeightList().getLineCount();
 		// addToHashMap();
 
 	}
@@ -113,8 +111,8 @@ public class ReadRules {
 
 		for (int t = 0; t < numLinhas - 1; t++) {
 
-			regras2 = g.getLista().getElementAt(t);
-			pesos = g.getWeightList().getText().split("\n")[t];
+			regras2 = GUI.getInstance().getLista().getElementAt(t);
+			pesos = GUI.getInstance().getWeightList().getText().split("\n")[t];
 
 			// System.out.println("Peso " +
 			// g.getWeightList().getText().split("\n")[t]); // Obtem peso linha

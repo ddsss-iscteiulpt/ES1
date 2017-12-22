@@ -12,10 +12,9 @@ import readRules.ReadRules;
 
 public class ReadRulesTest {
 
-	File file = new File("/Users/nanix/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
+	File file = new File("/Users/Diogo/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
 	
-	GUI g = new GUI();
-	ReadRules r = new ReadRules(g);
+	ReadRules r = new ReadRules();
 	
 	@Test
 	public void testReadRules() {
@@ -66,7 +65,7 @@ public class ReadRulesTest {
 		r.read(true, file);
 		r.addToHashMap();
 		
-		String pesoHash = g.getWeightList().getText().split("\n")[1];
+		String pesoHash = GUI.getInstance().getWeightList().getText().split("\n")[1];
 		
 		assertEquals(pesoHash, String.valueOf(r.getPeso()));
 	}
@@ -78,7 +77,7 @@ public class ReadRulesTest {
 		r.addToHashMap();
 		
 		
-		String peso = g.getWeightList().getText().split("\n")[1];
+		String peso = GUI.getInstance().getWeightList().getText().split("\n")[1];
 		
 		assertEquals(peso, "0.0");
 	}

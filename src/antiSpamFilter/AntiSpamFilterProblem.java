@@ -9,7 +9,6 @@ import org.uma.jmetal.problem.impl.AbstractDoubleProblem;
 import org.uma.jmetal.solution.DoubleSolution;
 
 import readFile.Leitura;
-import readRules.ReadRules;
 
 public class AntiSpamFilterProblem extends AbstractDoubleProblem {
 

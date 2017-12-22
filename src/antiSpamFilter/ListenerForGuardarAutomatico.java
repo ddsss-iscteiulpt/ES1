@@ -5,11 +5,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
-import readRules.ReadRules;
+
 
 /**
  * 

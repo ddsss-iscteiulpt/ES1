@@ -1,11 +1,9 @@
 package readFile;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,8 +11,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
-import java.util.Scanner;
 
 import antiSpamFilter.GUI;
 
@@ -29,8 +25,6 @@ public class ReadNSGAIIResults {
 
 	private File[] files;
 	private Queue<String> pesos = new LinkedList<>();
-	private GUI g;
-	private int FP;
 	private int pos;
 	private HashMap<Integer,String> fps  = new HashMap<>();
 	private ArrayList<String> aux = new ArrayList<>();

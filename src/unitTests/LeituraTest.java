@@ -12,13 +12,12 @@ import readRules.ReadRules;
 
 public class LeituraTest {
 
-	File file = new File("/Users/nanix/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
+	File file = new File("/Users/Diogo/git/ES1-2017-METIA1-41/src/antiSpamFilter/rules.cf");
 
 	
 	@Test
 	public void testGetFP() throws IOException {
-		GUI gui = new GUI();
-		ReadRules read = new ReadRules(gui);
+		ReadRules read = new ReadRules();
 		Leitura l = new Leitura(read);
 		read.read(true, file);
 		read.addToHashMap();
@@ -33,8 +32,7 @@ public class LeituraTest {
  
 	@Test
 	public void testGetFN() throws IOException {
-		GUI gui = new GUI();
-		ReadRules read = new ReadRules(gui);
+		ReadRules read = new ReadRules();
 		Leitura l = new Leitura(read);
 		read.read(true, file);
 		read.addToHashMap();
@@ -52,8 +50,7 @@ public class LeituraTest {
 	@Test
 	public void testLeitura() throws IOException {
 
-		GUI gui = new GUI();
-		ReadRules read = new ReadRules(gui);
+		ReadRules read = new ReadRules();
 		Leitura l = new Leitura(read);
 		assertEquals(l.getReadFiles(), read);
 	}

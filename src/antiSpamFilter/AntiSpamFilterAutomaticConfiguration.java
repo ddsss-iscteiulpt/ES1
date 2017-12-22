@@ -4,12 +4,8 @@ import org.uma.jmetal.algorithm.Algorithm;
 import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAIIBuilder;
 import org.uma.jmetal.operator.impl.crossover.SBXCrossover;
 import org.uma.jmetal.operator.impl.mutation.PolynomialMutation;
-import org.uma.jmetal.problem.Problem;
-import org.uma.jmetal.problem.multiobjective.zdt.*;
-import org.uma.jmetal.qualityindicator.impl.*;
 import org.uma.jmetal.qualityindicator.impl.hypervolume.PISAHypervolume;
 import org.uma.jmetal.solution.DoubleSolution;
-import org.uma.jmetal.util.JMetalException;
 import org.uma.jmetal.util.experiment.Experiment;
 import org.uma.jmetal.util.experiment.ExperimentBuilder;
 import org.uma.jmetal.util.experiment.component.*;
@@ -37,7 +33,7 @@ public class AntiSpamFilterAutomaticConfiguration {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					rf = new ReadRules(GUI.getInstance());
+					rf = new ReadRules();
 					rf.read(false, GUI.getInstance().getRulesFile());
 					init();
 					ReadNSGAIIResults rr = new ReadNSGAIIResults();

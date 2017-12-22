@@ -2,19 +2,12 @@ package antiSpamFilter;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.PrintWriter;
-import java.nio.Buffer;
-import java.util.Scanner;
-import java.util.Map.Entry;
 
 import javax.swing.JOptionPane;
-import javax.swing.SwingWorker;
 
-import readRules.ReadRules;
 
 /**
  * 
@@ -25,10 +18,8 @@ import readRules.ReadRules;
 
 public class ListenerForGuardar implements ActionListener {
 
-	private GUI gui;
 
-	public ListenerForGuardar(GUI gui) {
-		this.gui = gui;
+	public ListenerForGuardar() {
 	}
 
 	/**
@@ -39,24 +30,24 @@ public class ListenerForGuardar implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// System.out.println("Estou a carregar no botao!!");
-		if (!gui.getFnMan().getText().equals("") && !gui.getFpMan().getText().equals("")) {
+		if (!GUI.getInstance().getFnMan().getText().equals("") && !GUI.getInstance().getFpMan().getText().equals("")) {
 			System.out.println("podes guardar valores");
 
 			int contador = 0;
-			File rulesFile = gui.getRulesFile();
+			File rulesFile = GUI.getInstance().getRulesFile();
 
 			try {
 
 				PrintWriter printRules = new PrintWriter(rulesFile);
 
-				for (int i = 0; i < gui.getRf().getRegras().size(); i++) {
-					String ola = gui.getRf().getRegras().get(gui.getLista().getElementAt(contador));
+				for (int i = 0; i < GUI.getInstance().getRf().getRegras().size(); i++) {
+					String ola = GUI.getInstance().getRf().getRegras().get(GUI.getInstance().getLista().getElementAt(contador));
 
-					printRules.println(gui.getLista().getElementAt(contador) + "	" + ola);
+					printRules.println(GUI.getInstance().getLista().getElementAt(contador) + "	" + ola);
 					contador++;
 				}
 
-				JOptionPane.showMessageDialog(gui.getFrame(), "Guardado em : rules.cf");
+				JOptionPane.showMessageDialog(GUI.getInstance().getFrame(), "Guardado em : rules.cf");
 
 				printRules.close();
 
@@ -68,7 +59,7 @@ public class ListenerForGuardar implements ActionListener {
 		} else
 
 		{
-			JOptionPane.showMessageDialog(gui.getFrame(), "Atenção primeiro tens de Av. qualidade!!");
+			JOptionPane.showMessageDialog(GUI.getInstance().getFrame(), "Atenção primeiro tens de Av. qualidade!!");
 		}
 
 	}
